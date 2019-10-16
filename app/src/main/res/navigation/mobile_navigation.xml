@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_calendario">
+
+    <fragment
+        android:id="@+id/nav_calendario"
+        android:name="ian.meda.ligaitesosoccer.ui.calendario.CalendarioFragment"
+        android:label="@string/menu_calendario"
+        tools:layout="@layout/fragment_calendario" />
+
+    <fragment
+        android:id="@+id/nav_tablageneral"
+        android:name="ian.meda.ligaitesosoccer.ui.tablageneral.TablaGeneralFragment"
+        android:label="@string/menu_tablageneral"
+        tools:layout="@layout/fragment_tablageneral" />
+
+    <fragment
+        android:id="@+id/nav_goleadores"
+        android:name="ian.meda.ligaitesosoccer.ui.goleadores.GoleadoresFragment"
+        android:label="@string/menu_goleadores"
+        tools:layout="@layout/fragment_goleadores" />
+
+    <fragment
+        android:id="@+id/nav_foro"
+        android:name="ian.meda.ligaitesosoccer.ui.foro.ForoFragment"
+        android:label="@string/menu_foro"
+        tools:layout="@layout/fragment_foro" />
+
+    <fragment
+        android:id="@+id/nav_equipo"
+        android:name="ian.meda.ligaitesosoccer.ui.equipo.EquipoFragment"
+        android:label="@string/menu_equipo"
+        tools:layout="@layout/fragment_equipo" />
+
+    <fragment
+        android:id="@+id/nav_codigo"
+        android:name="ian.meda.ligaitesosoccer.ui.Codigo.CodigoFragment"
+        android:label="@string/menu_codigo"
+        tools:layout="@layout/fragment_codigo" />
+</navigation>
