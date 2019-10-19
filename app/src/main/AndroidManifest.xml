@@ -21,7 +21,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity android:name=".IngresarJugadores">
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,20 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text_gallery"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:text="Tabla general fragment"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/cardview_dark_background">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_5_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_10_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_25_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_44_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".44" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_50_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_56_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".56" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_62_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".62" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_68_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".68" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_74_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".74" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_80_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".80" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_86_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".86" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tabla_guideline_92_v"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".92" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="POS"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_10_v"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Equipo"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_10_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_50_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_PJ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PJ"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_50_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_56_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_PG"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PG"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_56_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_62_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_PE"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PE"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_62_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_68_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_PP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PP"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_68_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_74_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_GF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="GF"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_74_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_80_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_GC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="GC"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_80_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_86_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_DG"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="DG"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_86_v"
+            app:layout_constraintEnd_toEndOf="@id/tabla_guideline_92_v"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabla_PTS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PTS"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tabla_guideline_92_v"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_tabla_equipos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

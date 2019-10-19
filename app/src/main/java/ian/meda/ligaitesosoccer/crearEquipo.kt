@@ -54,7 +54,7 @@ class crearEquipo() :  AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_continuar_SE -> {
 
-                startActivity<solicitudespera>()
+                startActivity<IngresarJugadores>()
             }
         }
     }
