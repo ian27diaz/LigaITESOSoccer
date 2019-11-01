@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.parse.*
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.adapters.AdapterGoleadores
 import ian.meda.ligaitesosoccer.adapters.AdapterTablaGeneral
+import org.jetbrains.anko.activityUiThread
+import org.jetbrains.anko.doAsync
+import java.io.File
 
 class GoleadoresFragment : Fragment() {
 
@@ -21,63 +25,28 @@ class GoleadoresFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_goleadores, container, false)
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view_goleadores)
-        val goleadores = arrayListOf<HashMap<String, String>>()
 
-        goleadores.add(HashMap())
-        goleadores[0].put("Nombre", "Hector Chavez")
-        goleadores[0].put("Equipo", "Pallacracks")
-        goleadores[0].put("Goles","10")
+        doAsync {
+            val queryGoleadores = ParseQuery.getQuery<ParseObject>("Jugador")
+            queryGoleadores.include("IDEquipo")
 
-        goleadores.add(HashMap())
-        goleadores[1].put("Nombre", "Ian Diaz")
-        goleadores[1].put("Equipo", "Pallacracks")
-        goleadores[1].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[2].put("Nombre", "Ian Diaz")
-        goleadores[2].put("Equipo", "Pallacracks")
-        goleadores[2].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[3].put("Nombre", "Ian Diaz")
-        goleadores[3].put("Equipo", "Pallacracks")
-        goleadores[3].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[4].put("Nombre", "Ian Diaz")
-        goleadores[4].put("Equipo", "Pallacracks")
-        goleadores[4].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[5].put("Nombre", "Ian Diaz")
-        goleadores[5].put("Equipo", "Pallacracks")
-        goleadores[5].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[6].put("Nombre", "Ian Diaz")
-        goleadores[6].put("Equipo", "Pallacracks")
-        goleadores[6].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[7].put("Nombre", "Ian Diaz")
-        goleadores[7].put("Equipo", "Pallacracks")
-        goleadores[7].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[8].put("Nombre", "Ian Diaz")
-        goleadores[8].put("Equipo", "Pallacracks")
-        goleadores[8].put("Goles","7")
-
-        goleadores.add(HashMap())
-        goleadores[9].put("Nombre", "Ian Diaz")
-        goleadores[9].put("Equipo", "Pallacracks")
-        goleadores[9].put("Goles","7")
-
-
-        recyclerView.adapter = AdapterGoleadores(goleadores)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-
+            queryGoleadores.orderByDescending("GolesTotales")
+            queryGoleadores.setLimit(10)
+            queryGoleadores.findInBackground ( object: FindCallback<ParseObject> {
+            var goleadores: List<ParseObject> = arrayListOf()
+                override fun done(goleadoresList: List<ParseObject>, e : ParseException?) {
+                    if (e==null) {
+                        goleadores = goleadoresList
+                            recyclerView.adapter = AdapterGoleadores(goleadores)
+                            recyclerView.adapter?.notifyDataSetChanged()
+                            recyclerView.layoutManager = LinearLayoutManager(context)
+                    }
+                }
+            })
+        }
         return root
     }
+
+                class Jugador(val username: String, val photo: File, val commentsNumber: Int){
+        }
 }

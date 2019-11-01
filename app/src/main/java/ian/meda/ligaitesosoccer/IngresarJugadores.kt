@@ -15,8 +15,6 @@ class IngresarJugadores : AppCompatActivity() {
     private lateinit var deleteButton: ImageButton
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingresar_jugadores)
