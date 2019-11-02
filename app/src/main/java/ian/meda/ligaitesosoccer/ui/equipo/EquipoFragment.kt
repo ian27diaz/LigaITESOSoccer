@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.adapters.AdapterEquipo
 import ian.meda.ligaitesosoccer.beans.Jugador
+import ian.meda.ligaitesosoccer.ui.calendario.LinePagerIndicatorDecoration
 
 class EquipoFragment : Fragment() {
 
@@ -36,7 +37,7 @@ class EquipoFragment : Fragment() {
 
         recyclerView.adapter = AdapterEquipo(jugadores)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+        recyclerView.addItemDecoration(LinePagerIndicatorDecoration())
         PagerSnapHelper().attachToRecyclerView(recyclerView)
         return root
     }
