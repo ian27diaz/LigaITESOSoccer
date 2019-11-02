@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ian.meda.ligaitesosoccer">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".LigaItesoSoccerApplication"
         android:allowBackup="true"
@@ -11,22 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".solicitudespera"></activity>
-        <activity android:name=".crearEquipo"></activity>
-        <activity android:name=".login"
+        <activity android:name=".partidoActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".solicitudespera" />
+        <activity android:name=".crearEquipo" />
+        <activity
+            android:name=".login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name=".IngresarJugadores">
-        </activity>
-
+        <activity android:name=".IngresarJugadores"></activity>
     </application>
 
 </manifest>

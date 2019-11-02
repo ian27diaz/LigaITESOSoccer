@@ -31,7 +31,9 @@
             <item
                 android:id="@+id/nav_codigo"
                 android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_codigo" />
+                android:title="@string/menu_codigo"
+                />
+
         </menu>
     </item>
 
