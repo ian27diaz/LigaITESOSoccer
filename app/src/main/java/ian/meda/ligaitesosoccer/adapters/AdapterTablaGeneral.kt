@@ -3,13 +3,16 @@ package ian.meda.ligaitesosoccer.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.parse.ParseObject
 import ian.meda.ligaitesosoccer.R
 import org.jetbrains.anko.backgroundColor
 
-class AdapterTablaGeneral (private val equipos: ArrayList<HashMap<String, String>>): RecyclerView.Adapter<EquipoTablaViewHolder>() {
+class AdapterTablaGeneral (private val equipos: List<ParseObject>): RecyclerView.Adapter<EquipoTablaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EquipoTablaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_equipo_tabla, parent, false)
@@ -35,19 +38,24 @@ class EquipoTablaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val DGTitle: TextView = view.findViewById(R.id.equipo_tabla_DG)
     private val PTSTitle: TextView = view.findViewById(R.id.equipo_tabla_PTS)
     private val renglon: View = view
+    private var rm = Glide.with(view)
+    private val imagePhoto: ImageView = view.findViewById(R.id.equipo_tabla_escudo)
 
 
-    fun bind(equipo: HashMap<String, String>, position: Int) {
+    fun bind(equipo: ParseObject, position: Int) {
         positionTitle.text = (position+1).toString()
-        nombreTitle.text = equipo.get("nombre")
-        PJTitle.text = equipo.get("PJ")
-        PGTitle.text = equipo.get("PG")
-        PETitle.text = equipo.get("PE")
-        PPTitle.text = equipo.get("PP")
-        GFTitle.text = equipo.get("GF")
-        GCTitle.text = equipo.get("GC")
-        DGTitle.text = equipo.get("DG")
-        PTSTitle.text = equipo.get("PTS")
+        nombreTitle.text = equipo.getString("nombre")
+        PJTitle.text = equipo.getInt("partidosJugados").toString()
+        PGTitle.text = equipo.getInt("partidosGanados").toString()
+        PETitle.text = equipo.getInt("partidosEmpatados").toString()
+        PPTitle.text = equipo.getInt("partidosPerdidos").toString()
+        GFTitle.text = equipo.getInt("golesFavor").toString()
+        GCTitle.text = equipo.getInt("golesContra").toString()
+        DGTitle.text = equipo.getInt("diferenciaGoles").toString()
+        PTSTitle.text = equipo.getInt("puntosTotales").toString()
+
+        val imagenParse = equipo.getParseFile("escudo")
+        rm.load(imagenParse!!.url).into(imagePhoto)
 
         if ((position%2)==1){
             renglon.setBackgroundResource(R.drawable.gris1)
