@@ -65,7 +65,7 @@ class CalendarioFragment : Fragment() {
                             recyclerView.adapter = AdapterCalendario(jornadaArray)
                             recyclerView.adapter?.notifyDataSetChanged()
                             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+                            recyclerView.addItemDecoration(LinePagerIndicatorDecoration())
                             PagerSnapHelper().attachToRecyclerView(recyclerView)
                         }
                     }

@@ -20,14 +20,14 @@
             android:text="Nombre del equipo       "
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_nombre_equipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_nombre_equipo"
-            ></androidx.appcompat.widget.AppCompatEditText>
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_escudo_equipo"
@@ -37,7 +37,7 @@
             android:text="Escudo del equipo"
             app:layout_constraintTop_toBottomOf="@id/et_nombre_equipo"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_escudo_equipo"
             app:layout_constraintStart_toEndOf="@id/tv_nombre_equipo"
             android:foregroundGravity="center"
-            ></androidx.appcompat.widget.AppCompatImageView>
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_nombre_capitan"
@@ -58,14 +58,15 @@
             android:text="Nombre del capitan"
             app:layout_constraintTop_toBottomOf="@id/image_upload_escudo"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_nombre_capitan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_nombre_capitan"
-            ></androidx.appcompat.widget.AppCompatEditText>
+            />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_tel_crearequipo"
             android:layout_width="wrap_content"
@@ -74,14 +75,15 @@
             android:text="Telefono"
             app:layout_constraintTop_toBottomOf="@id/et_nombre_capitan"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_tel_crearequipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_tel_crearequipo"
-            ></androidx.appcompat.widget.AppCompatEditText>
+            />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_crearequipo_correo"
             android:layout_width="wrap_content"
@@ -90,14 +92,14 @@
             android:text="Correo Electronico"
             app:layout_constraintTop_toBottomOf="@id/et_tel_crearequipo"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_crearequipo_correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_crearequipo_correo"
-            ></androidx.appcompat.widget.AppCompatEditText>
+            />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_crearequipo_comprobante_pago"
             android:layout_width="wrap_content"
@@ -106,7 +108,7 @@
             android:text="Comprobante de pago"
             app:layout_constraintTop_toBottomOf="@id/et_crearequipo_correo"
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatTextView>
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_upload_comprobante"
@@ -117,7 +119,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_crearequipo_comprobante_pago"
             app:layout_constraintStart_toEndOf="@id/tv_nombre_equipo"
             android:foregroundGravity="center"
-            ></androidx.appcompat.widget.AppCompatImageView>
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_continuar_SE"
@@ -131,8 +133,7 @@
             app:layout_constraintTop_toBottomOf="@id/image_upload_comprobante"
             android:textColor="@android:color/white"
             android:gravity="center"
-
             app:layout_constraintStart_toStartOf="parent"
-            ></androidx.appcompat.widget.AppCompatButton>
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
