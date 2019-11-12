@@ -38,15 +38,27 @@
 
     <TextView
 
-    android:id="@+id/fragment_calendario_enfrentamiento1_resultado_fecha"
+        android:id="@+id/fragment_calendario_enfrentamiento1_resultado_fecha"
         android:textSize="18sp"
         android:text="1-0"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento1_ver"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_jornada_number"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento1_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento2_resultado_fecha"
-    app:layout_constraintTop_toBottomOf="@id/fragment_calendario_jornada_number"/>
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento1_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento1_equipo2"
@@ -76,8 +88,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento3_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento2_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento1_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento2_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento3_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento2_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento2_equipo2"
@@ -107,8 +131,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento4_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento3_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento2_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento3_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento4_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento3_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento3_equipo2"
@@ -138,8 +174,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento5_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento4_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento3_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento4_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento5_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento4_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento4_equipo2"
@@ -169,8 +217,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento6_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento5_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento4_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento5_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento6_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento5_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento5_equipo2"
@@ -200,8 +260,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento7_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento6_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento5_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento6_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento7_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento6_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento6_equipo2"
@@ -231,8 +303,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento8_resultado_fecha"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento7_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento6_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento7_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento8_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento7_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento7_equipo2"
@@ -262,8 +346,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_calendario_enfrentamiento8_ver"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento7_resultado_fecha"/>
+
+    <Button
+        android:id="@+id/fragment_calendario_enfrentamiento8_ver"
+        android:text="Ver"
+        android:textSize="10sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento8_resultado_fecha"
+        />
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento8_equipo2"
