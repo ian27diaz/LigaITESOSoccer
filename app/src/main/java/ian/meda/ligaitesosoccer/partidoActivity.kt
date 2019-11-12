@@ -2,6 +2,8 @@ package ian.meda.ligaitesosoccer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.parse.FindCallback
@@ -11,6 +13,7 @@ import com.parse.ParseQuery
 import ian.meda.ligaitesosoccer.adapters.AdapterPartido
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 
 class partidoActivity (): AppCompatActivity() {
 
@@ -18,41 +21,110 @@ class partidoActivity (): AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_partido)
 
+        var enfrentamiento = intent.getStringExtra("enfrentamiento")
+
+        //toast(enfrentamiento).show()
+
         var recyclerView1 = findViewById<RecyclerView>(R.id.partido_eventos_local)
         var recyclerView2 = findViewById<RecyclerView>(R.id.partido_eventos_visitas)
+        var localTitle: TextView = findViewById<TextView>(R.id.partido_nombre_local)
+        var marcadorlocalTitle: TextView = findViewById<TextView>(R.id.partido_marcador_local)
+        var marcadorvisitaTitle: TextView = findViewById<TextView>(R.id.partido_marcador_visita)
+        var visitaTitle: TextView = findViewById<TextView>(R.id.partido_nombre_visita)
+
+        var idLocal: String? = ""
+        var idVisita: String? = ""
+
 
 
         doAsync {
             val query = ParseQuery.getQuery<ParseObject>("JornadaJugadorEvento")
-            query.include("jornadaenfrentamiento").include("local")
-            query.include("jornadaenfrentamiento").include("visita")
+            query.include("jornadaenfrentamiento")//.include("local")
+            //query.include("jornadaenfrentamiento").include("visita")
             query.include("jugador").include("IDEquipo")
-            //query.whereEqualTo("objectId", enfrentamiento)
+            query.whereEqualTo("jornadaenfrentamiento", enfrentamiento)
+
+            val querymarcador = ParseQuery.getQuery<ParseObject>("JornadaEnfrentamiento")
+            querymarcador.include("local")
+            querymarcador.include("visitante")
+            querymarcador.whereEqualTo("objectId", enfrentamiento)
 
 
-            query.findInBackground ( object: FindCallback<ParseObject> {
-                var eventos: List<ParseObject> = arrayListOf()
 
-                override fun done(eventosList: List<ParseObject>, e : ParseException?) {
+            querymarcador.findInBackground ( object: FindCallback<ParseObject> {
+                var marcador: List<ParseObject> = arrayListOf()
+
+                override fun done(marcadorList: List<ParseObject>, e : ParseException?) {
                     if (e==null) {
-                        eventos = eventosList
+                        marcador = marcadorList
                         activityUiThread {
-                            recyclerView1.adapter = AdapterPartido(eventos, true)
-                            recyclerView2.adapter = AdapterPartido(eventos, false)
 
-                            recyclerView1.adapter?.notifyDataSetChanged()
-                            recyclerView2.adapter?.notifyDataSetChanged()
+                            localTitle.text = marcador[0].getParseObject("local")?.getString("nombre")
+                            marcadorlocalTitle.text = marcador[0].getInt("golesEquipo1").toString()
+                            marcadorvisitaTitle.text = marcador[0].getInt("golesEquipo2").toString()
+                            visitaTitle.text = marcador[0].getParseObject("visitante")?.getString("nombre")
 
-                            recyclerView1.layoutManager = LinearLayoutManager(parent)
-                            recyclerView2.layoutManager = LinearLayoutManager(parent)
+                            idLocal = marcador[0].getParseObject("local")?.objectId
+                            idVisita = marcador[0].getParseObject("visitante")?.objectId
 
                         }
+
+
+
+                        query.findInBackground ( object: FindCallback<ParseObject> {
+                            var eventosLocal: MutableList<ParseObject> = arrayListOf()
+                            var eventosVisita: MutableList<ParseObject> = arrayListOf()
+                            var eventos: List<ParseObject> = arrayListOf()
+
+
+                            override fun done(eventosList: List<ParseObject>, e : ParseException?) {
+                                if (e==null) {
+                                    eventos = eventosList
+
+                                    //toast(eventos.get(0).getParseObject("jugador")?.getParseObject("IDEquipo")?.objectId.toString()).show()
+
+                                    for (evento in eventosList){
+                                        if (evento.getParseObject("local")?.objectId == idLocal){
+                                            eventosLocal.add(evento)
+                                        }else if (evento.getParseObject("visitante")?.objectId == idVisita){
+                                            eventosVisita.add(evento)
+                                        }
+
+                                        //toast(evento.getParseObject("local")?.objectId.toString() ).show()
+
+                                        //toast(evento.getParseObject("visitante")?.objectId.toString() ).show()
+
+                                    }
+
+
+
+                                    activityUiThread {
+                                        recyclerView1.adapter = AdapterPartido(eventos)
+                                        recyclerView2.adapter = AdapterPartido(eventos)
+
+                                        recyclerView1.adapter?.notifyDataSetChanged()
+                                        recyclerView2.adapter?.notifyDataSetChanged()
+
+                                        recyclerView1.layoutManager = LinearLayoutManager(parent)
+                                        recyclerView2.layoutManager = LinearLayoutManager(parent)
+
+                                    }
+                                }
+                            }
+                        })
+
+
+
+
+
+
                     }
                 }
-
-
             })
-        }
 
+
+
+
+        }
     }
 }

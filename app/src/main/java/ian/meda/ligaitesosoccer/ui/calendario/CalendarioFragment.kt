@@ -55,7 +55,9 @@ class CalendarioFragment : Fragment() {
                                 enfrentamiento.getString("equipo1")!!,
                                 enfrentamiento.getString("equipo2")!!,
                                 enfrentamiento.getNumber("golesEquipo1")!!.toInt(),
-                                enfrentamiento.getNumber("golesEquipo2")!!.toInt())
+                                enfrentamiento.getNumber("golesEquipo2")!!.toInt(),
+                                enfrentamiento.objectId
+                                )
 
                             jornadaArray[currJornada].add(currEnfrentamiento)
 
