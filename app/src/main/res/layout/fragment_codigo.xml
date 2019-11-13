@@ -13,7 +13,7 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:text="Fragment codigo"
+        android:text="@string/fragment_codigo_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,8 +32,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tf_clavehash"
-        android:text="botonazo"
-        ></androidx.appcompat.widget.AppCompatButton>
+        android:text="@string/fragment_codigo_ingresar"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_codigo_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_enviar_hash"
+        android:text="Cerrar sesion"
+        />
 
 
 

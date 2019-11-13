@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
@@ -18,13 +19,19 @@ import com.parse.ParseException
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import ian.meda.ligaitesosoccer.R
+import ian.meda.ligaitesosoccer.utils.SESSION_TEAM
+import ian.meda.ligaitesosoccer.utils.SESSION_USERNAME
+import ian.meda.ligaitesosoccer.utils.SESSION_USER_ID
+import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.toast
 
 class CodigoFragment : Fragment() , View.OnClickListener{
 
-    lateinit var boton: Button
-    lateinit var tf_hash : EditText
+    private lateinit var boton: Button
+    private lateinit var tf_hash : EditText
+    private lateinit var mCerrarSesionBtn : Button
+    private lateinit var mText : TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,132 +39,70 @@ class CodigoFragment : Fragment() , View.OnClickListener{
     ): View? {
         val root = inflater.inflate(R.layout.fragment_codigo, container, false)
         boton = root.findViewById(R.id.btn_enviar_hash)
+        boton.setOnClickListener(this)
         tf_hash = root.findViewById(R.id.tf_clavehash)
 
-        boton.setOnClickListener(this)
+        mCerrarSesionBtn = root.findViewById(R.id.fragment_codigo_logout)
+        mCerrarSesionBtn.setOnClickListener(this)
+
+        mText = root.findViewById(R.id.text_send)
+
+        val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        val sessionId = sharedPreferences.getString(SESSION_USERNAME, "")
+
+        mText.text = "User: ${sessionId}"
         return root
     }
 
 
-    override fun onClick(p0: View?) {
-
-        boton.setOnClickListener() {
-
-            doAsync {
-                val query = ParseQuery.getQuery<ParseObject>("User")
-                query.include("idEquipo")
-                query.findInBackground(object : FindCallback<ParseObject> {
-                    var hashes: MutableList<String> = arrayListOf<String>()
-                    var auxlist: List<ParseObject>? = arrayListOf<ParseObject>()
-                    override fun done(objects: List<ParseObject>?, e: ParseException?) {
-
-                        if (e == null) {
-
-                            auxlist=objects
-                            Log.d("RARO",auxlist?.size.toString())
-                            var cont = 0
-                            /*    while(cont  < objects!!.size){
-
-                                hashes[cont] = objects?.get(cont)?.getString("objectId")
-                                cont++
-                            }*/
-                            //Log.d(auxlist.size.toString())
-                           // toast(auxlist?.size.toString())
-                            for (hash: ParseObject in objects!!) {
-
-                                hashes[cont] = hash.getString("objectId")!!
-                                cont++
-
-                            }
-//HARDCODEADO
-           // var tf_hash= "QQf5JROv0T"
-                            //buscas si esta el hash
-                            var conti = 0
-                            toast(hashes.size.toString())
-                            //ESTO FOR SE DESCOMENTA PARA SU USO NORMAL
-                            //for (h: String in hashes) {
-                                //toast(h)
-                                if (tf_hash.text.toString() == "QQf5JROv0T") {
-                                    toast("entro")
-                                    // SE HACE LO DE GUARDAR EN SHARED PREFECENCES
-
-                                    val sharedPreferences =
-                                        activity?.getSharedPreferences(
-                                            "myPref",
-                                            Context.MODE_PRIVATE
-                                        )
-                                    val editor = sharedPreferences?.edit()
-
-                                    val sharedPreferencesCapi =
-                                        activity?.getSharedPreferences(
-                                            "myPref",
-                                            Context.MODE_PRIVATE
-                                        )
-                                    val editorCapi = sharedPreferencesCapi?.edit()
-
-                                    val sharedPreferencesAdmin =
-                                        activity?.getSharedPreferences(
-                                            "myPref",
-                                            Context.MODE_PRIVATE
-                                        )
-                                    val editorAdmin = sharedPreferencesAdmin?.edit()
-
-
-
-                                    if (objects[cont].getBoolean("esAdmin")!! == true) {
-                                        toast("admim")
-                                        editorAdmin?.putString("admin", "yes")
-                                        editorAdmin?.apply()
-                                    } else {
-                                        //si es capitan agregas el shared prefences de que si es
-                                        if (objects[cont].getBoolean("esCapitan")!! == true) {
-
-                                            editorCapi?.putString("capi", "yes")
-
-                                        } else {
-
-                                            editorCapi?.putString("capi", "no")
-
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.btn_enviar_hash -> {
+                Log.v("CodigoFragment", "clicked on ingresar button")
+                val codigo = tf_hash.text.toString();
+                if(codigo.equals("")){
+                    Toast.makeText(context, "Ingresa un codigo para continuar", Toast.LENGTH_SHORT).show();
+                } else {
+                    doAsync {
+                        val query = ParseQuery.getQuery<ParseObject>("_User");
+                        query.include("idEquipo");
+                        query.findInBackground(object: FindCallback<ParseObject> {
+                            override fun done(usuarios: List<ParseObject>, e: ParseException?) {
+                                if(e == null){
+                                    Log.v("CodigoFragment", "Usuarios: ${usuarios.size}")
+                                    for(usuario : ParseObject in usuarios){
+                                        if(usuario.getString("code").equals(codigo)){
+                                            val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+                                            val editor = sharedPreferences.edit()
+                                            Toast.makeText(context, "User: ${usuario.objectId}, EquipoID: ${usuario.getParseObject("idEquipo")?.objectId}", Toast.LENGTH_SHORT ).show()
+                                            editor.putString(SESSION_USER_ID, usuario.objectId)
+                                            editor.putString(SESSION_TEAM, usuario.getParseObject("idEquipo")?.objectId)
+                                            editor.putString(SESSION_USERNAME, usuario.getString("username"))
+                                            editor.apply()
+                                            break
                                         }
-                                        //pones el valor del equipo!!! FATA... h -> valor actual del hash del equipo()
-
-                                        val nombreEquipodelHash =
-                                            objects[cont].getParseObject("idEquipo")!!.getString("nombre")
-                                        editor?.putString("equipo", nombreEquipodelHash)
-                                        editor?.apply()
-                                        editorCapi?.apply()
-                                        toast("Funciona?")
-                                        //toast(nombreEquipodelHash.toString())
-                                        //break
                                     }
                                 }
-                                conti++
-
-
-                            if (conti >= hashes.size - 1) {
-                                //NO SE GUARDO EL SHARED PREFECNCES
-                                //HACES UN TOAST DICEINDO QUE NO ES CORRECTO
-
-                                //toast("Ncodigo")
-
-
-                                /*var t = Toast.makeText(this@CodigoFragment,)
-                               maketext(this@CodigoFragment,  “Hello”, Toast.LENGTH_LONG)
-                            t. show()*/
                             }
 
-
-                        } else {
-                            toast("fatal")
-                        }
-
+                        })
                     }
+                }
+            }
+            R.id.fragment_codigo_logout -> {
 
-                })
+                val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString(SESSION_USER_ID, "")
+                editor.putString(SESSION_TEAM, "")
+                editor.putString(SESSION_USERNAME, "")
+                Toast.makeText(context, "Cerrar sesion", Toast.LENGTH_SHORT).show()
+                editor.apply()
 
 
             }
         }
+
     }
 
 }

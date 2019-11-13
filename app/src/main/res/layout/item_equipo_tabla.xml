@@ -94,7 +94,7 @@
         android:id="@+id/equipo_tabla_POS"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="@string/activity_partido_0"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -121,7 +121,7 @@
         android:id="@+id/equipo_tabla_nombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Club Default"
+        android:text="@string/item_equipo_tabla_club_default"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -135,7 +135,7 @@
         android:id="@+id/equipo_tabla_PJ"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="4"
+        android:text="@string/item_equipo_tabla_4"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -149,7 +149,7 @@
         android:id="@+id/equipo_tabla_PG"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="2"
+        android:text="@string/item_equipo_tabla_2"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -163,7 +163,7 @@
         android:id="@+id/equipo_tabla_PE"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:text="@string/item_equipo_tabla_1"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -177,7 +177,7 @@
         android:id="@+id/equipo_tabla_PP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:text="@string/item_equipo_tabla_1"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -191,7 +191,7 @@
         android:id="@+id/equipo_tabla_GF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="10"
+        android:text="@string/item_equipo_tabla_1"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -205,7 +205,7 @@
         android:id="@+id/equipo_tabla_GC"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="6"
+        android:text="@string/item_equipo_tabla_1"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -219,7 +219,7 @@
         android:id="@+id/equipo_tabla_DG"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="4"
+        android:text="@string/item_equipo_tabla_4"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"
@@ -233,7 +233,7 @@
         android:id="@+id/equipo_tabla_PTS"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="7"
+        android:text="@string/item_equipo_tabla_1"
         android:textAlignment="center"
 
         app:layout_constraintLeft_toRightOf="@id/equipo_tabla_guideline_50_h"

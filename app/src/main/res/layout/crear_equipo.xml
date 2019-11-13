@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -17,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Nombre del equipo       "
+            android:text="@string/crear_equipo_nombreequipo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -34,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Escudo del equipo"
+            android:text="@string/crear_equipo_escudoequipo"
             app:layout_constraintTop_toBottomOf="@id/et_nombre_equipo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -55,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Nombre del capitan"
+            android:text="@string/crear_equipo_nombre_capitan"
             app:layout_constraintTop_toBottomOf="@id/image_upload_escudo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -72,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Telefono"
+            android:text="@string/crear_equipo_telefono"
             app:layout_constraintTop_toBottomOf="@id/et_nombre_capitan"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -89,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Correo Electronico"
+            android:text="@string/crear_equipo_correoelectronico"
             app:layout_constraintTop_toBottomOf="@id/et_tel_crearequipo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -105,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Comprobante de pago"
+            android:text="@string/crear_equipo_comprobantepago"
             app:layout_constraintTop_toBottomOf="@id/et_crearequipo_correo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -128,7 +127,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="Continuar"
+            android:text="@string/crear_equipo_continuar"
             android:background = "@android:color/holo_blue_bright"
             app:layout_constraintTop_toBottomOf="@id/image_upload_comprobante"
             android:textColor="@android:color/white"

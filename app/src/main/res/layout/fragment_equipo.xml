@@ -8,7 +8,7 @@
         android:id="@+id/fragment_equipo_nombreEquipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pallacracks"
+        android:text="@string/fragment_equipo_teamname"
         android:textAlignment="center"
         android:textSize="28sp"
         app:layout_constraintTop_toTopOf="parent"
