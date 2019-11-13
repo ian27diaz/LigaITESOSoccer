@@ -22,7 +22,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:text="Ian27Diaz dijo:"
+                android:text="@string/item_mensaje_def_user"
                 />
             <TextView
                 android:id="@+id/item_mensaje_fecha"
@@ -34,14 +34,14 @@
                 app:layout_constraintTop_toBottomOf="@id/item_mensaje_usuario"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:textSize="15sp"
-                android:text="27/08/1998"
+                android:text="@string/item_mensaje_def_fecha"
                 />
             <TextView
                 app:layout_constraintTop_toBottomOf="@id/item_mensaje_fecha"
                 android:id="@+id/item_mensaje_mensaje"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mensaje de prueba"
+                android:text="@string/item_mensaje_def_mensajeprueba"
                 android:paddingBottom="15dp"
                 />
 
