@@ -19,10 +19,7 @@ import com.parse.ParseException
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import ian.meda.ligaitesosoccer.R
-import ian.meda.ligaitesosoccer.utils.SESSION_TEAM
-import ian.meda.ligaitesosoccer.utils.SESSION_USERNAME
-import ian.meda.ligaitesosoccer.utils.SESSION_USER_ID
-import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
+import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.toast
 
@@ -76,8 +73,17 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                             val editor = sharedPreferences.edit()
                                             Toast.makeText(context, "User: ${usuario.objectId}, EquipoID: ${usuario.getParseObject("idEquipo")?.objectId}", Toast.LENGTH_SHORT ).show()
                                             editor.putString(SESSION_USER_ID, usuario.objectId)
-                                            editor.putString(SESSION_TEAM, usuario.getParseObject("idEquipo")?.objectId)
                                             editor.putString(SESSION_USERNAME, usuario.getString("username"))
+                                            if(usuario.getBoolean("esAdmin")) {
+                                                editor.putString(SESSION_USERTYPE, "ADMIN")
+                                            } else if(usuario.getBoolean("esCapitan")) {
+                                                editor.putString(SESSION_USERTYPE, "CAPITAN")
+                                                editor.putString(SESSION_TEAM, usuario.getParseObject("idEquipo")?.objectId)
+                                            } else {
+                                                editor.putString(SESSION_USERTYPE, "MIEMBRO")
+                                                editor.putString(SESSION_TEAM, usuario.getParseObject("idEquipo")?.objectId)
+                                            }
+
                                             editor.apply()
                                             break
                                         }
@@ -96,6 +102,7 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                 editor.putString(SESSION_USER_ID, "")
                 editor.putString(SESSION_TEAM, "")
                 editor.putString(SESSION_USERNAME, "")
+                editor.putString(SESSION_USERTYPE, "")
                 Toast.makeText(context, "Cerrar sesion", Toast.LENGTH_SHORT).show()
                 editor.apply()
 
