@@ -3,7 +3,9 @@ package ian.meda.ligaitesosoccer.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
@@ -12,35 +14,38 @@ import com.parse.ParseObject
 import ian.meda.ligaitesosoccer.R
 import org.jetbrains.anko.image
 
-class AdapterPartido (private val eventos: List<ParseObject>): RecyclerView.Adapter<EventosViewHolder>() {
+class AdapterPartido (private val eventos: MutableList<ParseObject>): BaseAdapter() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventosViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_evento, parent, false)
-        return EventosViewHolder(view)
+    override fun getCount(): Int {
+        return eventos.size
     }
 
-    override fun getItemCount(): Int = eventos.size
-
-    override fun onBindViewHolder(holder: EventosViewHolder, position: Int) {
-        holder.bind(eventos[position])
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
-}
 
-class EventosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val jugadorTitle: TextView = view.findViewById(R.id.item_evento_jugador)
-    private val iconoFoto: ImageView = view.findViewById(R.id.item_evento_icono)
-
-    fun bind(evento: ParseObject) {
-
-        jugadorTitle.text = evento.getParseObject("jugadores")?.getString("nombre")
-
-                //when(evento.getString("tipo")){
-                 //   "amarilla" -> {iconoFoto.image = R.drawable.hector_chavez.toDrawable()}
-                //    "roja" -> {iconoFoto.image = R.drawable.elsiguientemessi.toDrawable()}
-                 //   "gol" -> {iconoFoto.image = R.drawable.barcelonalogo.toDrawable()}
-                //}
-
-
-
+    override fun getItem(position: Int): Any {
+        return eventos[position]
     }
+
+    override fun getView(position: Int, p1: View?, parent: ViewGroup?): View {
+        val rowView = LayoutInflater.from(parent?.context).inflate(R.layout.item_evento, parent, false)
+
+        val titleTextView = rowView.findViewById(R.id.item_evento_jugador) as TextView
+        val tipoEvento = rowView.findViewById(R.id.item_evento_icono) as ImageView
+
+        val evento = getItem(position) as ParseObject
+
+        titleTextView.text = evento.getParseObject("jugador")?.getString("Nombre")
+
+
+        when(evento.getString("evento")){
+            "Amarilla" -> {tipoEvento.setImageResource(R.drawable.amarilla)}
+            "Roja" -> {tipoEvento.setImageResource(R.drawable.roja)}
+            "Gol" -> {tipoEvento.setImageResource(R.drawable.gol)}
+        }
+
+        return rowView
+    }
+
 }

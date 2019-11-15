@@ -3,6 +3,7 @@ package ian.meda.ligaitesosoccer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,10 +24,8 @@ class partidoActivity (): AppCompatActivity() {
 
         var enfrentamiento = intent.getStringExtra("enfrentamiento")
 
-        //toast(enfrentamiento).show()
-
-        var recyclerView1 = findViewById<RecyclerView>(R.id.partido_eventos_local)
-        var recyclerView2 = findViewById<RecyclerView>(R.id.partido_eventos_visitas)
+        var listView1 = findViewById<ListView>(R.id.partido_eventos_local)
+        var listView2 = findViewById<ListView>(R.id.partido_eventos_visitas)
         var localTitle: TextView = findViewById<TextView>(R.id.partido_nombre_local)
         var marcadorlocalTitle: TextView = findViewById<TextView>(R.id.partido_marcador_local)
         var marcadorvisitaTitle: TextView = findViewById<TextView>(R.id.partido_marcador_visita)
@@ -35,21 +34,15 @@ class partidoActivity (): AppCompatActivity() {
         var idLocal: String? = ""
         var idVisita: String? = ""
 
-
-
         doAsync {
             val query = ParseQuery.getQuery<ParseObject>("JornadaJugadorEvento")
-            query.include("jornadaenfrentamiento")//.include("local")
-            //query.include("jornadaenfrentamiento").include("visita")
+            query.include("jornadaenfrentamiento")
             query.include("jugador").include("IDEquipo")
-            query.whereEqualTo("jornadaenfrentamiento", enfrentamiento)
 
             val querymarcador = ParseQuery.getQuery<ParseObject>("JornadaEnfrentamiento")
             querymarcador.include("local")
             querymarcador.include("visitante")
             querymarcador.whereEqualTo("objectId", enfrentamiento)
-
-
 
             querymarcador.findInBackground ( object: FindCallback<ParseObject> {
                 var marcador: List<ParseObject> = arrayListOf()
@@ -69,62 +62,34 @@ class partidoActivity (): AppCompatActivity() {
 
                         }
 
-
-
                         query.findInBackground ( object: FindCallback<ParseObject> {
                             var eventosLocal: MutableList<ParseObject> = arrayListOf()
                             var eventosVisita: MutableList<ParseObject> = arrayListOf()
                             var eventos: List<ParseObject> = arrayListOf()
 
-
                             override fun done(eventosList: List<ParseObject>, e : ParseException?) {
                                 if (e==null) {
                                     eventos = eventosList
-
-                                    //toast(eventos.get(0).getParseObject("jugador")?.getParseObject("IDEquipo")?.objectId.toString()).show()
-
                                     for (evento in eventosList){
-                                        if (evento.getParseObject("local")?.objectId == idLocal){
-                                            eventosLocal.add(evento)
-                                        }else if (evento.getParseObject("visitante")?.objectId == idVisita){
-                                            eventosVisita.add(evento)
+                                        if (enfrentamiento == evento.getParseObject("jornadaenfrentamiento")?.objectId.toString()){
+                                            if (evento.getParseObject("jugador")?.getParseObject("IDEquipo")?.objectId.toString() == idLocal ){
+                                                eventosLocal.add(evento)
+                                            }else if (evento.getParseObject("jugador")?.getParseObject("IDEquipo")?.objectId.toString() == idVisita){
+                                                eventosVisita.add(evento)
+                                            }
                                         }
-
-                                        //toast(evento.getParseObject("local")?.objectId.toString() ).show()
-
-                                        //toast(evento.getParseObject("visitante")?.objectId.toString() ).show()
-
                                     }
 
-
-
                                     activityUiThread {
-                                        recyclerView1.adapter = AdapterPartido(eventos)
-                                        recyclerView2.adapter = AdapterPartido(eventos)
-
-                                        recyclerView1.adapter?.notifyDataSetChanged()
-                                        recyclerView2.adapter?.notifyDataSetChanged()
-
-                                        recyclerView1.layoutManager = LinearLayoutManager(parent)
-                                        recyclerView2.layoutManager = LinearLayoutManager(parent)
-
+                                        listView1.adapter = AdapterPartido(eventosLocal)
+                                        listView2.adapter = AdapterPartido(eventosVisita)
                                     }
                                 }
                             }
                         })
-
-
-
-
-
-
                     }
                 }
             })
-
-
-
-
         }
     }
 }

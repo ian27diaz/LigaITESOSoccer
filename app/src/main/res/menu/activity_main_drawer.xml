@@ -19,22 +19,19 @@
         <item
             android:id="@+id/nav_foro"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_foro" />
+            android:title="@string/menu_foro"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_equipo"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/menu_equipo"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_codigo"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/menu_codigo"
+            />
+
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_equipo"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_equipo" />
-            <item
-                android:id="@+id/nav_codigo"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_codigo"
-                />
-
-        </menu>
-    </item>
 
 </menu>

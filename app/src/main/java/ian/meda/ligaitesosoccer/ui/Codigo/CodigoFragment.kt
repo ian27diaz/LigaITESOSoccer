@@ -18,9 +18,12 @@ import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseObject
 import com.parse.ParseQuery
+import ian.meda.ligaitesosoccer.MainActivity
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class CodigoFragment : Fragment() , View.OnClickListener{
@@ -87,6 +90,8 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                             editor.apply()
                                             break
                                         }
+                                        startActivity<MainActivity>()
+
                                     }
                                 }
                             }
@@ -105,6 +110,7 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                 editor.putString(SESSION_USERTYPE, "")
                 Toast.makeText(context, "Cerrar sesion", Toast.LENGTH_SHORT).show()
                 editor.apply()
+                startActivity<MainActivity>()
 
 
             }
