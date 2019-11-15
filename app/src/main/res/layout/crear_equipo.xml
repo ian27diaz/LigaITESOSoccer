@@ -78,6 +78,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_tel_crearequipo"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_tel_crearequipo"
@@ -95,6 +96,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_crearequipo_correo"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_crearequipo_correo"
