@@ -1,3 +1,9 @@
 package ian.meda.ligaitesosoccer.beans
 
-data class Jugador(val nombre: String, val expediente: String, val carrera: String, val goles: Int, val tarjetasAmarillas: Int, val tarjetasRojas: Int)
+import com.parse.ParseFile
+import java.io.File
+
+data class Jugador(var nombre: String, var expediente: String, var goles: Int, var Foto: ParseFile,
+                   var esEgresado: Boolean, var esSeleccionado: Boolean, var email: String, var pointer: String) {
+    constructor(): this("", "", 0, ParseFile(File("")), false, false, "", "")
+}

@@ -7,6 +7,8 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ian.meda.ligaitesosoccer.adapters.AdapterIngresarJugadores
+import ian.meda.ligaitesosoccer.beans.Jugador
+import ian.meda.ligaitesosoccer.utils.currCapitan
 import org.jetbrains.anko.startActivity
 
 class IngresarJugadores : AppCompatActivity() {
@@ -19,21 +21,14 @@ class IngresarJugadores : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingresar_jugadores)
 
-
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view_ingresar_jugadores)
-        val jugadores = arrayListOf<HashMap<String, String>>()
+        val jugadores = arrayListOf<Jugador>()
 
         addButton = findViewById<ImageButton>(R.id.ingresar_jugadores_btn_nuevo_jugador)
         nextButton = findViewById<Button>(R.id.ingresar_jugadores_btn_siguiente)
-
+        jugadores.add(currCapitan)
         addButton.setOnClickListener {
-            jugadores.add(HashMap())
-            jugadores[jugadores.size-1].put("nombre", "")
-            jugadores[jugadores.size-1].put("expediente", "")
-            jugadores[jugadores.size-1].put("correo", "")
-            jugadores[jugadores.size-1].put("carrera", "")
-
-
+            jugadores.add(currCapitan)
             recyclerView.adapter = AdapterIngresarJugadores(jugadores)
             recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -43,29 +38,6 @@ class IngresarJugadores : AppCompatActivity() {
             startActivity<solicitudespera>()
         }
 
-        jugadores.add(HashMap())
-        jugadores[0].put("nombre", "Erick De Santiago")
-        jugadores[0].put("expediente", "699887")
-        jugadores[0].put("correo", "is699887@iteso.mx")
-        jugadores[0].put("carrera", "Ingenieria en Sistemas Computacionales")
-
-        jugadores.add(HashMap())
-        jugadores[1].put("nombre", "Ian Díaz Meda")
-        jugadores[1].put("expediente", "710007")
-        jugadores[1].put("correo", "is710007@iteso.mx")
-        jugadores[1].put("carrera", "Ingenieria en Sistemas Computacionales")
-
-        jugadores.add(HashMap())
-        jugadores[2].put("nombre", "Alessandro Pallaro Gómez")
-        jugadores[2].put("expediente", "709389")
-        jugadores[2].put("correo", "is709389@iteso.mx")
-        jugadores[2].put("carrera", "Ingenieria en Sistemas Computacionales")
-
-        jugadores.add(HashMap())
-        jugadores[3].put("nombre", "Pedro Gutierrez")
-        jugadores[3].put("expediente", "706183")
-        jugadores[3].put("correo", "is706183@iteso.mx")
-        jugadores[3].put("carrera", "Ingenieria en Sistemas Computacionales")
 
         recyclerView.adapter = AdapterIngresarJugadores(jugadores)
         recyclerView.layoutManager = LinearLayoutManager(this)

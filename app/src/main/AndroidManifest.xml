@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".LigaItesoSoccerApplication"
@@ -21,7 +22,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".solicitudespera" />
-        <activity android:name=".crearEquipo" />
+        <activity android:name=".CrearEquipo" />
         <activity
             android:name=".login"
             android:theme="@style/AppTheme.NoActionBar">

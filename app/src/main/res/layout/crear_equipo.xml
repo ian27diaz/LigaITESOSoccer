@@ -12,7 +12,7 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_nombre_equipo"
+            android:id="@+id/crear_equipo_tv_nombre_equipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -22,84 +22,83 @@
             />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_nombre_equipo"
+            android:id="@+id/crear_equipo_et_nombre_equipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_nombre_equipo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_nombre_equipo"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_escudo_equipo"
+            android:id="@+id/crear_equipo_tv_escudo_equipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_escudoequipo"
-            app:layout_constraintTop_toBottomOf="@id/et_nombre_equipo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_nombre_equipo"
             app:layout_constraintStart_toStartOf="parent"
             />
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_upload_escudo"
+            android:id="@+id/crear_equipo_image_upload_escudo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/upload_photo"
-            app:layout_constraintTop_toBottomOf="@id/tv_escudo_equipo"
-            app:layout_constraintStart_toEndOf="@id/tv_nombre_equipo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_escudo_equipo"
+            app:layout_constraintStart_toEndOf="@id/crear_equipo_tv_nombre_equipo"
             android:foregroundGravity="center"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_nombre_capitan"
+            android:id="@+id/crear_equipo_tv_nombre_capitan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_nombre_capitan"
-            app:layout_constraintTop_toBottomOf="@id/image_upload_escudo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_image_upload_escudo"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_nombre_capitan"
+            android:id="@+id/crear_equipo_et_nombre_capitan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_nombre_capitan"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_nombre_capitan"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_tel_crearequipo"
+            android:id="@+id/crear_equipo_tv_expediente_crearequipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="@string/crear_equipo_telefono"
-            app:layout_constraintTop_toBottomOf="@id/et_nombre_capitan"
+            android:text="Expediente"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_nombre_capitan"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_tel_crearequipo"
-            android:inputType="number"
+            android:id="@+id/crear_equipo_et_expediente_crearequipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_tel_crearequipo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_expediente_crearequipo"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_crearequipo_correo"
+            android:id="@+id/crear_equipo_tv_correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_correoelectronico"
-            app:layout_constraintTop_toBottomOf="@id/et_tel_crearequipo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_expediente_crearequipo"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_crearequipo_correo"
-            android:inputType="textEmailAddress"
+            android:id="@+id/crear_equipo_et_correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_crearequipo_correo"
+            android:inputType="textEmailAddress"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_correo"
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_crearequipo_comprobante_pago"
@@ -107,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_comprobantepago"
-            app:layout_constraintTop_toBottomOf="@id/et_crearequipo_correo"
+            app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_correo"
             app:layout_constraintStart_toStartOf="parent"
             />
 
@@ -118,7 +117,7 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/upload_photo"
             app:layout_constraintTop_toBottomOf="@id/tv_crearequipo_comprobante_pago"
-            app:layout_constraintStart_toEndOf="@id/tv_nombre_equipo"
+            app:layout_constraintStart_toEndOf="@id/crear_equipo_tv_nombre_equipo"
             android:foregroundGravity="center"
             />
 
