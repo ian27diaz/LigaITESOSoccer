@@ -107,7 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/partido_eventos_local"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -116,7 +116,9 @@
         android:layout_marginStart="5dp"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+
+
+    <ListView
         android:id="@+id/partido_eventos_visitas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
