@@ -16,6 +16,8 @@ import ian.meda.ligaitesosoccer.beans.Enfrentamiento
 import ian.meda.ligaitesosoccer.partidoActivity
 import ian.meda.ligaitesosoccer.ui.calendario.CalendarioFragment
 import org.jetbrains.anko.startActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AdapterCalendario(var jornadas : ArrayList<MutableList<Enfrentamiento>>) : RecyclerView.Adapter<JornadaViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JornadaViewHolder {
@@ -78,9 +80,17 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
 
     fun bind(jornada : MutableList<Enfrentamiento>){
+        var hoy = Date()
         jornadaNumber.setText("Jornada " + jornada.get(0).jornadNum.toString());
         match1team1.setText(jornada.get(0).equipo1)
-        match1result.setText(jornada.get(0).golesEquipo1.toString() + " - " + jornada.get(0).golesEquipo2.toString())
+        var date = jornada.get(0).fecha;
+        Log.v("AdaperCalendario", date.toString())
+        if(date.after(hoy)) {
+            match1result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match1result.setText(jornada.get(0).golesEquipo1.toString() + " - " + jornada.get(0).golesEquipo2.toString())
+        }
         match1team2.setText(jornada.get(0).equipo2)
         match1ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(0).idEnfrentamiento)
@@ -88,7 +98,14 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match2team1.setText(jornada.get(1).equipo1)
-        match2result.setText(jornada.get(1).golesEquipo1.toString() + " - " + jornada.get(1).golesEquipo2.toString())
+        date = jornada.get(1).fecha;
+        if(date.after(hoy)) {
+            match2result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match2result.setText(jornada.get(1).golesEquipo1.toString() + " - " + jornada.get(1).golesEquipo2.toString())
+        }
+
         match2team2.setText(jornada.get(1).equipo2)
         match2ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(1).idEnfrentamiento)
@@ -96,7 +113,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match3team1.setText(jornada.get(2).equipo1)
-        match3result.setText(jornada.get(2).golesEquipo1.toString() + " - " + jornada.get(2).golesEquipo2.toString())
+        date = jornada.get(2).fecha;
+        if(date.after(hoy)) {
+            match3result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match3result.setText(jornada.get(2).golesEquipo1.toString() + " - " + jornada.get(2).golesEquipo2.toString())
+        }
         match3team2.setText(jornada.get(2).equipo2)
         match3ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(2).idEnfrentamiento)
@@ -104,7 +127,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match4team1.setText(jornada.get(3).equipo1)
-        match4result.setText(jornada.get(3).golesEquipo1.toString() + " - " + jornada.get(3).golesEquipo2.toString())
+        date = jornada.get(3).fecha;
+        if(date.after(hoy)) {
+            match4result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match4result.setText(jornada.get(3).golesEquipo1.toString() + " - " + jornada.get(3).golesEquipo2.toString())
+        }
         match4team2.setText(jornada.get(3).equipo2)
         match4ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(3).idEnfrentamiento)
@@ -112,7 +141,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match5team1.setText(jornada.get(4).equipo1)
-        match5result.setText(jornada.get(4).golesEquipo1.toString() + " - " + jornada.get(4).golesEquipo2.toString())
+        date = jornada.get(4).fecha;
+        if(date.after(hoy)) {
+            match5result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match5result.setText(jornada.get(4).golesEquipo1.toString() + " - " + jornada.get(4).golesEquipo2.toString())
+        }
         match5team2.setText(jornada.get(4).equipo2)
         match5ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(4).idEnfrentamiento)
@@ -120,7 +155,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match6team1.setText(jornada.get(5).equipo1)
-        match6result.setText(jornada.get(5).golesEquipo1.toString() + " - " + jornada.get(5).golesEquipo2.toString())
+        date = jornada.get(5).fecha;
+        if(date.after(hoy)) {
+            match6result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match6result.setText(jornada.get(5).golesEquipo1.toString() + " - " + jornada.get(5).golesEquipo2.toString())
+        }
         match6team2.setText(jornada.get(5).equipo2)
         match6ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(5).idEnfrentamiento)
@@ -128,7 +169,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match7team1.setText(jornada.get(6).equipo1)
-        match7result.setText(jornada.get(6).golesEquipo1.toString() + " - " + jornada.get(6).golesEquipo2.toString())
+        date = jornada.get(6).fecha;
+        if(date.after(hoy)) {
+            match7result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+        }
+        else {
+            match7result.setText(jornada.get(6).golesEquipo1.toString() + " - " + jornada.get(6).golesEquipo2.toString())
+        }
         match7team2.setText(jornada.get(6).equipo2)
         match7ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(6).idEnfrentamiento)
@@ -136,7 +183,13 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match8team1.setText(jornada.get(7).equipo1)
-        match8result.setText(jornada.get(7).golesEquipo1.toString() + " - " + jornada.get(7).golesEquipo2.toString())
+        date = jornada.get(7).fecha;
+        if(date.after(hoy)) {
+            match8result.setText("${date.date}/${(date.month + 1)}/${date.year  + 1900}")
+        }
+        else {
+            match8result.setText(jornada.get(7).golesEquipo1.toString() + " - " + jornada.get(7).golesEquipo2.toString())
+        }
         match8team2.setText(jornada.get(7).equipo2)
         match8ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(7).idEnfrentamiento)

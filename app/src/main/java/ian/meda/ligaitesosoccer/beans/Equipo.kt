@@ -1,5 +1,12 @@
 package ian.meda.ligaitesosoccer.beans
 
-data class Equipo(val nombre : String, var esEquipoValido: Boolean, var puntosTotales: Int, var partidosGanados: Int, var escudo: Int,
-                  var golesFavor: Int, var diferenciaGoles: Int, var partidosEmpatados: Int, var partidosJugados: Int, var golesContra: Int,
-                  var partidosPerdidos: Int)
+import com.parse.ParseFile
+import java.io.File
+
+data class Equipo(var nombre : String, var esEquipoValido: Boolean, var puntosTotales: Int, var partidosGanados: Int, var escudo: ParseFile,
+                  var comprobantePago: ParseFile, var golesFavor: Int, var golesContra: Int, var diferenciaGoles: Int, var partidosEmpatados: Int,
+                  var partidosJugados: Int, var partidosPerdidos: Int) {
+
+        constructor() : this("", false, 0,0, ParseFile(File("")),
+                                ParseFile(File("")), 0,0,0,0,0,0)
+}

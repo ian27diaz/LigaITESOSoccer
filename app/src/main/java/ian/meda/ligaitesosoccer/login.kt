@@ -34,7 +34,7 @@ class login () :  AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.login_darDeAlta -> {
-                startActivity<crearEquipo>()
+                startActivity<CrearEquipo>()
             }
         }
     }

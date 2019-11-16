@@ -45,7 +45,7 @@
         android:id="@+id/ingresa_jugador_foto"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/hector_chavez"
+        android:src="@drawable/ic_account_box_black_24dp"
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
         app:layout_constraintEnd_toStartOf="@id/ingresa_jugador_guideline_30_v"
         app:layout_constraintTop_toTopOf="parent"

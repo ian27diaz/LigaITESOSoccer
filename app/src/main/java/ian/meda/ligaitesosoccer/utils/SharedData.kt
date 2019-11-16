@@ -1,10 +1,10 @@
 package ian.meda.ligaitesosoccer.utils
 
 import ian.meda.ligaitesosoccer.beans.Equipo
+import ian.meda.ligaitesosoccer.beans.Jugador
 
-var currEquipo: Equipo = Equipo("", true, 0, 0, 0,
-                                0, 0, 0, 0, 0,
-                                0 )
+var currEquipo: Equipo = Equipo()
+var currCapitan: Jugador = Jugador()
 
 const val SHARED_PREFERENCES = "ian.meda.ligaitesosoccer.SHARED_PREFERENCES"
 const val SESSION_USER_ID = "SESSION_USER_ID"
