@@ -6,24 +6,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_calendario"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_calendar"
             android:title="@string/menu_calendario" />
         <item
             android:id="@+id/nav_tablageneral"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/positions"
             android:title="@string/menu_tablageneral" />
         <item
             android:id="@+id/nav_goleadores"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/boot"
             android:title="@string/menu_goleadores" />
         <item
             android:id="@+id/nav_foro"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_chat_black_24dp"
             android:title="@string/menu_foro"
             android:visible="false"/>
         <item
             android:id="@+id/nav_equipo"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/equipo"
             android:title="@string/menu_equipo"
             android:visible="false"/>
         <item
