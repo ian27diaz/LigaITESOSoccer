@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.startActivity
 
-class login () :  AppCompatActivity(), View.OnClickListener {
+class Login () :  AppCompatActivity(), View.OnClickListener {
 
     lateinit var login: Button
     lateinit var crear_equipo: Button

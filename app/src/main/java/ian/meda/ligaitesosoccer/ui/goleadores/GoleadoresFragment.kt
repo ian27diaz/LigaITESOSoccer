@@ -46,7 +46,4 @@ class GoleadoresFragment : Fragment() {
         }
         return root
     }
-
-                class Jugador(val username: String, val photo: File, val commentsNumber: Int){
-        }
 }

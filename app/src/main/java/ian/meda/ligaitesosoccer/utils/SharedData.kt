@@ -5,6 +5,8 @@ import ian.meda.ligaitesosoccer.beans.Jugador
 
 var currEquipo: Equipo = Equipo()
 var currCapitan: Jugador = Jugador()
+var capitanCode: String = ""
+var jugadorCode: String = ""
 
 const val SHARED_PREFERENCES = "ian.meda.ligaitesosoccer.SHARED_PREFERENCES"
 const val SESSION_USER_ID = "SESSION_USER_ID"

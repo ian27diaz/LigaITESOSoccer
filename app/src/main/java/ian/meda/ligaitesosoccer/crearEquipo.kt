@@ -10,22 +10,26 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.parse.ParseException
 import com.parse.ParseFile
 import com.parse.ParseObject
+import com.parse.SaveCallback
 import ian.meda.ligaitesosoccer.beans.Equipo
-import ian.meda.ligaitesosoccer.beans.Jugador
 import ian.meda.ligaitesosoccer.utils.currCapitan
 import ian.meda.ligaitesosoccer.utils.currEquipo
+import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.startActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import kotlin.random.Random
 
 class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
 
@@ -62,6 +66,17 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
         expediente = findViewById(R.id.crear_equipo_et_expediente_crearequipo)
         correoElectronico = findViewById(R.id.crear_equipo_et_correo)
 
+
+
+        nombreEquipo.imeOptions = EditorInfo.IME_ACTION_DONE
+        nombreEquipo.singleLine = true
+        nombreCapitan.imeOptions = EditorInfo.IME_ACTION_DONE
+        nombreCapitan.singleLine = true
+        expediente.imeOptions = EditorInfo.IME_ACTION_DONE
+        expediente.singleLine = true
+        correoElectronico.imeOptions = EditorInfo.IME_ACTION_DONE
+        correoElectronico.singleLine = true
+
         continuar.setOnClickListener(this)
         escudo.setOnClickListener(this)
         comprobante.setOnClickListener(this)
@@ -77,7 +92,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                         requestPermissions(permission, WRITE_EXTERNAL_STORE)
                     }
                     else {
-                        escudoSelected = true;
+                        escudoSelected = true
                         openGallery(GALLERY_ESCUDO_REQUEST_ACCEPTED)
                     }
                 }
@@ -95,16 +110,15 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
+
             R.id.btn_continuar_SE -> {
                 //Es la variable compartida currEquipo del utils del SharedData
                 val teamName = nombreEquipo.text.toString()
-                if(teamName.equals("") || nombreCapitan.text.toString().equals("")
-                    || expediente.text.toString().equals("") || correoElectronico.text.toString().equals("")
+                if(teamName == "" || nombreCapitan.text.toString() == ""
+                    || expediente.text.toString() == "" || correoElectronico.text.toString() == ""
                     || !escudoSelected || !comprobanteSelected) {
                     Toast.makeText(this, "Llena todos los datos antes de continuar!", Toast.LENGTH_LONG).show()
                 } else {
-                    currEquipo = Equipo(teamName, false, 0, 0, escudoImage,
-                        comprobanteImage, 0, 0, 0, 0, 0, 0)
                     currCapitan.nombre = nombreCapitan.text.toString()
                     currCapitan.expediente = expediente.text.toString()
                     currCapitan.email = correoElectronico.text.toString()
@@ -115,7 +129,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                     newEquipo.put("puntosTotales", 0)
 
                     newEquipo.put("partidosGanados", 0)
-                    newEquipo.put("escudo", escudoImage!!)
+                    newEquipo.put("escudo", escudoImage)
                     newEquipo.put("golesFavor", 0   )
                     newEquipo.put("diferenciaGoles", 0)
                     newEquipo.put("partidosEmpatados", 0)
@@ -123,7 +137,21 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                     newEquipo.put("golesContra", 0)
                     newEquipo.put("partidosPerdidos", 0)
 
-                    newEquipo.saveInBackground()
+
+                    newEquipo.saveInBackground (SaveCallback { e ->
+                        if (e == null) {
+                            currEquipo = Equipo(
+                                teamName, false, 0, 0, escudoImage,
+                                comprobanteImage, 0, 0, 0, 0,
+                                0, 0, newEquipo.objectId
+                            )
+                        } else {
+                            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
+                            Log.v("CrearEquipo", "Error -> $e")
+                        }
+                    })
+
+
 
                     startActivity<IngresarJugadores>()
                 }
@@ -138,11 +166,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
         startActivityForResult(intent, code)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode) {
             WRITE_EXTERNAL_STORE -> {
                 if(grantResults.size >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -164,11 +188,10 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
             GALLERY_COMPROBANTE_REQUEST_ACCEPTED -> {
                 if(resultCode == Activity.RESULT_OK && data != null){
                     Glide.with(this).load(data.data).into(comprobante)
-                    if(Build.VERSION.SDK_INT < 28) {
-                        image = MediaStore.Images.Media.getBitmap(this.contentResolver, data.data)
-                    } else{
-                        val imageDecoder = ImageDecoder.createSource(this.contentResolver, data.data!!)
-                        image = ImageDecoder.decodeBitmap(imageDecoder)
+                    image = if(Build.VERSION.SDK_INT < 28) {
+                        MediaStore.Images.Media.getBitmap(this.contentResolver, data.data)
+                    } else {
+                        ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, data.data!!))
                     }
 
                     val file = File(this.cacheDir, image.toString())
@@ -190,11 +213,11 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
             GALLERY_ESCUDO_REQUEST_ACCEPTED -> {
                 if(resultCode == Activity.RESULT_OK && data != null){
                     Glide.with(this).load(data.data).into(escudo)
-                    if(Build.VERSION.SDK_INT < 28) {
-                        image = MediaStore.Images.Media.getBitmap(this.contentResolver, data.data)
+                    image = if(Build.VERSION.SDK_INT < 28) {
+                        MediaStore.Images.Media.getBitmap(this.contentResolver, data.data)
                     } else{
                         val imageDecoder = ImageDecoder.createSource(this.contentResolver, data.data!!)
-                        image = ImageDecoder.decodeBitmap(imageDecoder)
+                        ImageDecoder.decodeBitmap(imageDecoder)
                     }
 
                     val file = File(this.cacheDir, image.toString())
@@ -214,5 +237,4 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
 }

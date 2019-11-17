@@ -17,14 +17,14 @@
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         >
-        <activity android:name=".partidoActivity"></activity>
+        <activity android:name=".PartidoActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".solicitudespera" />
+        <activity android:name=".SolicitudDeEspera" />
         <activity android:name=".CrearEquipo" />
         <activity
-            android:name=".login"
+            android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

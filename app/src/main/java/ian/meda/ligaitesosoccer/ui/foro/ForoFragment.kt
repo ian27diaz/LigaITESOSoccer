@@ -14,13 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.parse.*
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.adapters.AdapterForo
-import ian.meda.ligaitesosoccer.utils.SESSION_TEAM
 import ian.meda.ligaitesosoccer.utils.SESSION_USER_ID
 import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
 import org.jetbrains.anko.doAsync
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ForoFragment : Fragment() {
@@ -59,15 +55,15 @@ class ForoFragment : Fragment() {
         sendMessageBtn.setOnClickListener{
             val message = mMessage.text.toString()
             mMessage.setText("")
-            var newMessage: ParseObject = ParseObject("ForoMensajes")
-            var currDate: Date = Date()
+            val newMessage = ParseObject("ForoMensajes")
+            val currDate = Date()
             val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
             val currentUserId = sharedPreferences.getString(SESSION_USER_ID, "")
             newMessage.put("IDUser", ParseObject.createWithoutData("_User", currentUserId))
             newMessage.put("Mensaje", message)
             newMessage.put("Fecha", currDate)
-            var test = newMessage.saveInBackground().isCompleted
-            Log.v("ForoFragment", test.toString() + " completed")
+            val test = newMessage.saveInBackground().isCompleted
+            Log.v("ForoFragment", "$test completed")
         }
 
         return root
