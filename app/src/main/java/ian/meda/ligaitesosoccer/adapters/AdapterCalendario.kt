@@ -24,11 +24,14 @@ class AdapterCalendario(var jornadas : ArrayList<MutableList<Enfrentamiento>>) :
     override fun getItemCount(): Int = jornadas.size
 
     override fun onBindViewHolder(holder: JornadaViewHolder, position: Int) {
-        holder.bind(jornadas[position])
+        holder.bind(jornadas[position], position)
     }
 }
 
 class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
+    private val vista: View = view
+
     private val jornadaNumber: TextView = view.findViewById(R.id.fragment_calendario_jornada_number)
     private val match1team1: TextView = view.findViewById(R.id.fragment_calendario_enfrentamiento1_equipo1)
     private val match1result: TextView = view.findViewById(R.id.fragment_calendario_enfrentamiento1_resultado_fecha)
@@ -74,14 +77,19 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
     val intent = Intent(context, PartidoActivity::class.java)
 
 
-    fun bind(jornada : MutableList<Enfrentamiento>){
-        var hoy = Date()
-        jornadaNumber.setText("Jornada " + jornada.get(0).jornadNum.toString());
-        match1team1.setText(jornada.get(0).equipo1)
-        var date = jornada.get(0).fecha;
+    fun bind(jornada : MutableList<Enfrentamiento>, position: Int){
+        if ((position%2)==1){
+            vista.setBackgroundResource(R.drawable.calendario_gradient_background1)
+        }else{
+            vista.setBackgroundResource(R.drawable.calendario_gradient_background2)
+        }
+        val hoy = Date()
+        jornadaNumber.text = "Jornada " + jornada[0].jornadNum
+        match1team1.text = jornada[0].equipo1
+        var date = jornada[0].fecha
         Log.v("AdaperCalendario", date.toString())
         if(date.after(hoy)) {
-            match1result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
+            match1result.text = "${date.date}/${date.month + 1}/${date.year + 1900}"
         }
         else {
             match1result.setText(jornada.get(0).golesEquipo1.toString() + " - " + jornada.get(0).golesEquipo2.toString())
@@ -93,7 +101,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
         }
 
         match2team1.setText(jornada.get(1).equipo1)
-        date = jornada.get(1).fecha;
+        date = jornada.get(1).fecha
         if(date.after(hoy)) {
             match2result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
         }

@@ -8,7 +8,7 @@ class LigaItesoSoccerApplication : Application() {
         super.onCreate()
         Parse.initialize(
             Parse.Configuration.Builder(this).applicationId("mQzc8WhqPWFqhS6pwPxCFE11oHLzyyunomXjVPr9")
-                .clientKey("0Jqbndf2MwjCBMmTjpluBbxtiAlRwlM387THHUs5")
+                .clientKey("HKXlSMTOHvsHzfEeZEB3Cxci3CMcKTRPNsoUxCG9")
                 .server("https://parseapi.back4app.com/")
                 .build()
         )
