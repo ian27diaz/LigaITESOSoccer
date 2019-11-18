@@ -2,9 +2,11 @@ package ian.meda.ligaitesosoccer
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.parse.ParseUser
 import org.jetbrains.anko.startActivity
 
 class Login () :  AppCompatActivity(), View.OnClickListener {
@@ -23,7 +25,6 @@ class Login () :  AppCompatActivity(), View.OnClickListener {
 
         login.setOnClickListener(this)
         crear_equipo.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View?) {

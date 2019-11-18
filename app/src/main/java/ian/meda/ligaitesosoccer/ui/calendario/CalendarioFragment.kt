@@ -30,6 +30,7 @@ class CalendarioFragment : Fragment() {
         doAsync{
 
             val jornadasEnfrentamiento = ParseQuery.getQuery<ParseObject>("JornadaEnfrentamiento")
+
             jornadasEnfrentamiento.findInBackground(object: FindCallback<ParseObject>{
                 val jornadaArray : ArrayList<MutableList<Enfrentamiento>> = arrayListOf(
                  arrayListOf(),

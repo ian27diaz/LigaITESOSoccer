@@ -1,5 +1,6 @@
 package ian.meda.ligaitesosoccer.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,7 @@ class EquipoTablaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         PTSTitle.text = equipo.getInt("puntosTotales").toString()
 
         val imagenParse = equipo.getParseFile("escudo")
+        Log.v("AdapterTablaGeneral", imagenParse!!.url)
         rm.load(imagenParse!!.url).into(imagePhoto)
 
         if ((position%2)==1){
