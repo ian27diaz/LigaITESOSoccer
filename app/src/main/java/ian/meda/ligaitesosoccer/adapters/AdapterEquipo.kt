@@ -10,36 +10,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.parse.ParseObject
 import ian.meda.ligaitesosoccer.R
-import ian.meda.ligaitesosoccer.beans.Jugador
 
-class AdapterEquipo(var users : List<ParseObject>): RecyclerView.Adapter<jugadorViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): jugadorViewHolder {
+
+class AdapterEquipo(private var users : List<ParseObject>): RecyclerView.Adapter<JugadorViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JugadorViewHolder {
         Log.d("AdapterEquipo", users.size.toString())
         val layoutInflater = LayoutInflater.from(parent.context).inflate(R.layout.item_jugador, parent, false)
-        return jugadorViewHolder(layoutInflater)
+        return JugadorViewHolder(layoutInflater)
     }
 
     override fun getItemCount(): Int = users.size
 
-    override fun onBindViewHolder(holder: jugadorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JugadorViewHolder, position: Int) {
         holder.bind(users[position])
     }
 }
 
-class jugadorViewHolder(view: View) : RecyclerView.ViewHolder(view){
-    val nombreJugador = view.findViewById<TextView>(R.id.item_jugador_nombreJugador)
-    val expedienteCarrera = view.findViewById<TextView>(R.id.item_jugador_expediente_y_carrera)
-    val goles = view.findViewById<TextView>(R.id.item_jugador_goles)
-    val amarillas = view.findViewById<TextView>(R.id.item_jugador_amarillas)
-    val rojas = view.findViewById<TextView>(R.id.item_jugador_rojas)
-    val imagen = view.findViewById<ImageView>(R.id.item_jugador_imagen)
-    val glide = Glide.with(view)
+class JugadorViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    private val nombreJugador = view.findViewById<TextView>(R.id.item_jugador_nombreJugador)
+    private val expedienteCarrera = view.findViewById<TextView>(R.id.item_jugador_expediente_y_carrera)
+    private val goles = view.findViewById<TextView>(R.id.item_jugador_goles)
+    private val amarillas = view.findViewById<TextView>(R.id.item_jugador_amarillas)
+    private val rojas = view.findViewById<TextView>(R.id.item_jugador_rojas)
+    private val imagen = view.findViewById<ImageView>(R.id.item_jugador_imagen)
+    private val glide = Glide.with(view)
+
     fun bind(jugador : ParseObject){
-        nombreJugador.setText(jugador.getString("Nombre"))
-        expedienteCarrera.setText(jugador.getString("Expediente"))
-        goles.setText("Goles: ${jugador.getNumber("GolesTotales")}")
-        amarillas.setText("Amarillas: 0")
-        rojas.setText("Rojas: 0")
+        val golesNumber = jugador.getNumber("GolesTotales")
+        nombreJugador.text = jugador.getString("Nombre")
+        expedienteCarrera.text = jugador.getString("Expediente")
+        goles.text = "Goles: $golesNumber"
+        amarillas.text = "Amarillas: 0"
+        rojas.text = "Rojas: 0"
         glide.load(jugador.getParseFile("Foto")!!.url).into(imagen)
     }
 }

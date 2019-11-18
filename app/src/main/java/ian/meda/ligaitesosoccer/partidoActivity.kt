@@ -16,7 +16,7 @@ import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
 
-class partidoActivity (): AppCompatActivity() {
+class PartidoActivity (): AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

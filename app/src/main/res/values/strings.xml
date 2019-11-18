@@ -17,7 +17,7 @@
     <string name="item_jornada_jornada_n">Jornada n</string>
     <string name="item_jornada_equipo_1">Equipo 1</string>
     <string name="item_jornada_equipo_2">Equipo 2</string>
-    <string name="item_jornada_defscore">1-0</string>
+    <string name="item_jornada_defscore">1–0</string>
     <string name="item_jornada_button_string">Ver</string>
     <string name="activity_ing_jug_siguiente">siguiente</string>
     <string name="activity_partido_0">0</string>
@@ -32,7 +32,7 @@
     <string name="fragment_codigo_description">¡Ingresa el código de tu equipo!</string>
     <string name="fragment_codigo_ingresar">Ingresar</string>
     <string name="fragment_equipo_teamname">Pallacracks</string>
-    <string name="fragment_foro_hint">Ingresa tu mensaje...</string>
+    <string name="fragment_foro_hint">Ingresa tu mensaje…</string>
     <string name="fragment_foro_send">Enviar mensaje</string>
     <string name="fragment_goleadores_pos">POS</string>
     <string name="fragment_goleadores_jugador">Jugador</string>
@@ -63,4 +63,6 @@
     <string name="item_mensaje_def_mensajeprueba">Mensaje de prueba</string>
     <string name="login_fut_ingresa">Ingresa</string>
     <string name="login_fut_crearequipo">Crear Equipo</string>
+    <string name="wait_screen_mensaje">La creación de tu equipo está siendo procesada</string>
+    <string name="wait_screen_inicio">Inicio</string>
 </resources>

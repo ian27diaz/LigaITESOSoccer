@@ -48,9 +48,9 @@ class CalendarioFragment : Fragment() {
                         Log.v("Enfrentamientos: ", enfrentamientos.size.toString())
 
                         for(enfrentamiento: ParseObject in enfrentamientos){
-                            var currJornada = enfrentamiento.getNumber("jornada")!!.toInt() - 1
+                            val currJornada = enfrentamiento.getNumber("jornada")!!.toInt() - 1
 
-                            var currEnfrentamiento = Enfrentamiento(
+                            val currEnfrentamiento = Enfrentamiento(
                                 currJornada + 1,
                                 enfrentamiento.getString("equipo1")!!,
                                 enfrentamiento.getString("equipo2")!!,

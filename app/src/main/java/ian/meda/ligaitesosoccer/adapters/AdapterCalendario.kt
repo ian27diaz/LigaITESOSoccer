@@ -1,6 +1,5 @@
 package ian.meda.ligaitesosoccer.adapters
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import ian.meda.ligaitesosoccer.MainActivity
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.beans.Enfrentamiento
-import ian.meda.ligaitesosoccer.partidoActivity
-import ian.meda.ligaitesosoccer.ui.calendario.CalendarioFragment
-import org.jetbrains.anko.startActivity
+import ian.meda.ligaitesosoccer.PartidoActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -76,7 +71,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val match8team2: TextView = view.findViewById(R.id.fragment_calendario_enfrentamiento8_equipo2)
     private val match8ver: Button = view.findViewById(R.id.fragment_calendario_enfrentamiento8_ver)
     val context = view.getContext()
-    val intent = Intent(context, partidoActivity::class.java)
+    val intent = Intent(context, PartidoActivity::class.java)
 
 
     fun bind(jornada : MutableList<Enfrentamiento>){

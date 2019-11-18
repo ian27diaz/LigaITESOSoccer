@@ -7,8 +7,8 @@ class LigaItesoSoccerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Parse.initialize(
-            Parse.Configuration.Builder(this).applicationId("fTd1N4HlCZjtESub0nQjg00aSYpJa022Nn91fJhY")
-                .clientKey("4jn4IuJiUMU7C9OtDvaDa7v5UyEmqM1nkYfWE1hg")
+            Parse.Configuration.Builder(this).applicationId("mQzc8WhqPWFqhS6pwPxCFE11oHLzyyunomXjVPr9")
+                .clientKey("0Jqbndf2MwjCBMmTjpluBbxtiAlRwlM387THHUs5")
                 .server("https://parseapi.back4app.com/")
                 .build()
         )
