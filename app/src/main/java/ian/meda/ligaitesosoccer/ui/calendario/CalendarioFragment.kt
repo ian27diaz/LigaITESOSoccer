@@ -17,6 +17,7 @@ import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.adapters.AdapterCalendario
 import ian.meda.ligaitesosoccer.beans.Enfrentamiento
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.toast
 
 class CalendarioFragment : Fragment() {
 
@@ -44,11 +45,11 @@ class CalendarioFragment : Fragment() {
                 )
                 val recyclerView = root.findViewById<RecyclerView>(R.id.fragment_calendario_recyclerview)
 
-                override fun done(enfrentamientos: List<ParseObject>, e3: ParseException?) {
+                override fun done(enfrentamientos: List<ParseObject>?, e3: ParseException?) {
                     if(e3 == null){
-                        Log.v("Enfrentamientos: ", enfrentamientos.size.toString())
+                        Log.v("Enfrentamientos: ", enfrentamientos!!.size.toString())
 
-                        for(enfrentamiento: ParseObject in enfrentamientos){
+                        for(enfrentamiento: ParseObject in enfrentamientos!!){
                             val currJornada = enfrentamiento.getNumber("jornada")!!.toInt() - 1
 
                             val currEnfrentamiento = Enfrentamiento(

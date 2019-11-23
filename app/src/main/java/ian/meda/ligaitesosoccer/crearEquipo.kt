@@ -130,6 +130,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
 
                     newEquipo.put("partidosGanados", 0)
                     newEquipo.put("escudo", escudoImage)
+                    newEquipo.put("comprobantePago", comprobanteImage)
                     newEquipo.put("golesFavor", 0   )
                     newEquipo.put("diferenciaGoles", 0)
                     newEquipo.put("partidosEmpatados", 0)

@@ -7,13 +7,6 @@
     android:paddingBottom="35dp">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_30_h"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".3" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/ingresa_jugador_guideline_10_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
@@ -50,18 +43,19 @@
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
         app:layout_constraintEnd_toStartOf="@id/ingresa_jugador_guideline_30_v"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ingresa_jugador_guideline_30_h"
+        app:layout_constraintBottom_toBottomOf="@id/ingresa_jugador_nombre"
+        android:visibility="visible"
         />
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/ingresa_jugador_nombre"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_30_v"
         app:layout_constraintEnd_toStartOf="@id/ingresa_jugador_guideline_70_v"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ingresa_jugador_guideline_30_h"
         android:hint="@string/item_ingresa_jugador_nombre"
         android:textAlignment="center"
+        android:visibility="visible"
         />
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ingresa_jugador_mas_info"
@@ -70,9 +64,24 @@
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_70_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ingresa_jugador_guideline_30_h"
+        app:layout_constraintBottom_toBottomOf="@id/ingresa_jugador_nombre"
         android:src="@drawable/show_more"
+        android:visibility="visible"
         />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ingresa_jugador_menos_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_70_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ingresa_jugador_nombre"
+        android:src="@drawable/show_less"
+        android:visibility="invisible"
+        />
+
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ingresa_jugador_etiqueta_expediente"
         android:layout_width="0dp"
@@ -80,7 +89,8 @@
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
         android:text="@string/item_ingresa_jugador_expediente"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_guideline_30_h"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_nombre"
+        android:visibility="gone"
         />
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/ingresa_jugador_expediente"
@@ -91,6 +101,7 @@
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_expediente"
         android:hint="ingresa expediente"
+        android:visibility="gone"
         />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ingresa_jugador_etiqueta_correo"
@@ -100,6 +111,7 @@
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_expediente"
+        android:visibility="gone"
         />
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/ingresa_jugador_correo"
@@ -109,6 +121,7 @@
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_correo"
         android:hint="ingresa correo electronico"
+        android:visibility="gone"
         />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ingresa_jugador_etiqueta_carrera"
@@ -118,7 +131,9 @@
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_70_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_correo"
         android:text="Carrera:"
+        android:visibility="gone"
         />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/ingresa_jugador_carrera"
         android:layout_width="0dp"
@@ -127,6 +142,7 @@
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_70_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_carrera"
         android:hint="ingresa carrera"
+        android:visibility="gone"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -138,6 +154,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ingresa_jugador_carrera"
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_70_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
+        android:visibility="gone"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

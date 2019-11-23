@@ -8,11 +8,15 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.get
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.beans.Jugador
 import org.jetbrains.anko.singleLine
+import org.jetbrains.anko.wrapContent
 
 class AdapterIngresarJugadores (private val jugadores: ArrayList<Jugador>,
                                 private val clickListener: (Jugador, ImageView) -> Unit,
@@ -37,6 +41,11 @@ class NameViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val carreraTitle: EditText = view.findViewById(R.id.ingresa_jugador_carrera)
     private val fotoJugador: ImageView = view.findViewById(R.id.ingresa_jugador_foto)
     private val deleteButton: ImageButton = view.findViewById(R.id.ingresa_jugador_delete)
+    private val showMoreButton: ImageButton = view.findViewById(R.id.ingresa_jugador_mas_info)
+    private val showLessButton: ImageButton = view.findViewById(R.id.ingresa_jugador_menos_info)
+    private val expedienteLabel: TextView = view.findViewById(R.id.ingresa_jugador_etiqueta_expediente)
+    private val correoLabel: TextView = view.findViewById(R.id.ingresa_jugador_etiqueta_correo)
+    private val carreraLabel: TextView = view.findViewById(R.id.ingresa_jugador_etiqueta_carrera)
     private val glide = Glide.with(view)
 
 
@@ -79,6 +88,30 @@ class NameViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
         deleteButton.setOnClickListener{
             deleteListener(jugador)
+        }
+
+        showMoreButton.setOnClickListener{
+            showMoreButton.visibility = View.INVISIBLE
+            showLessButton.visibility = View.VISIBLE
+            expedienteLabel.visibility = View.VISIBLE
+            expedienteTitle.visibility = View.VISIBLE
+            correoLabel.visibility = View.VISIBLE
+            correoTitle.visibility = View.VISIBLE
+            carreraLabel.visibility = View.VISIBLE
+            carreraTitle.visibility = View.VISIBLE
+            deleteButton.visibility = View.VISIBLE
+        }
+
+        showLessButton.setOnClickListener{
+            showLessButton.visibility = View.INVISIBLE
+            showMoreButton.visibility = View.VISIBLE
+            expedienteLabel.visibility = View.GONE
+            expedienteTitle.visibility = View.GONE
+            correoLabel.visibility = View.GONE
+            correoTitle.visibility = View.GONE
+            carreraLabel.visibility = View.GONE
+            carreraTitle.visibility = View.GONE
+            deleteButton.visibility = View.GONE
         }
     }
 

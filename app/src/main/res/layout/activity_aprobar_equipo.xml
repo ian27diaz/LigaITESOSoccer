@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AprobarEquipo">
+
+    <Button
+        android:id="@+id/aprobar_equipo_aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:id="@+id/aprobar_equipo_rechazar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rechazar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/aprobar_equipo_nombre_equipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nombre equipo"
+        app:layout_constraintTop_toBottomOf="@id/aprobar_equipo_aceptar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/aprobar_equipo_escudo_equipo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/barcelonalogo"
+        app:layout_constraintTop_toBottomOf="@id/aprobar_equipo_aceptar"
+        app:layout_constraintBottom_toBottomOf="@id/aprobar_equipo_nombre_equipo"
+        app:layout_constraintStart_toEndOf="@id/aprobar_equipo_nombre_equipo"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/aprobar_equipo_comprobante"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/barcelonalogo"
+        app:layout_constraintTop_toBottomOf="@id/aprobar_equipo_nombre_equipo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

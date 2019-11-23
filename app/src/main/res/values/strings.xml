@@ -65,4 +65,7 @@
     <string name="login_fut_crearequipo">Crear Equipo</string>
     <string name="wait_screen_mensaje">La creación de tu equipo está siendo procesada</string>
     <string name="wait_screen_inicio">Inicio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

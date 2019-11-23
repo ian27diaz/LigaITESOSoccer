@@ -39,8 +39,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_calendario, R.id.nav_tablageneral, R.id.nav_goleadores,
-                R.id.nav_foro, R.id.nav_equipo, R.id.nav_codigo
+                R.id.nav_calendario, R.id.nav_tablageneral,   R.id.nav_goleadores,
+                R.id.nav_foro, R.id.nav_equipo,
+                R.id.nav_equipos_pendientes, R.id.nav_plantillas_pendientes,
+                R.id.nav_codigo
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -55,11 +57,14 @@ class MainActivity : AppCompatActivity() {
             navView.menu[4].isVisible = true
         }
 
+        if (sessionId=="ADMIN"){
+            navView.menu[5].isVisible = true
+            navView.menu[6].isVisible = true
+        }
 
         }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

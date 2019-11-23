@@ -9,15 +9,15 @@
     <application
         android:name=".LigaItesoSoccerApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
-        >
-        <activity android:name=".PartidoActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".AprobarEquipo"></activity>
+        <activity android:name=".PartidoActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IngresarJugadores"></activity>
+        <activity android:name=".IngresarJugadores" />
     </application>
 
 </manifest>
