@@ -36,6 +36,18 @@
         tools:layout="@layout/fragment_equipo" />
 
     <fragment
+        android:id="@+id/nav_equipos_pendientes"
+        android:name="ian.meda.ligaitesosoccer.ui.equipospendientes.EquipoPendienteFragment"
+        android:label="Equipos pendientes"
+        tools:layout="@layout/fragment_equipo_pendiente" />
+
+    <fragment
+        android:id="@+id/nav_plantillas_pendientes"
+        android:name="ian.meda.ligaitesosoccer.ui.plantillaspendientes.PlantillasPendientesFragment"
+        android:label="Plantillas pendientes"
+        tools:layout="@layout/fragment_plantillas_pendientes" />
+
+    <fragment
         android:id="@+id/nav_codigo"
         android:name="ian.meda.ligaitesosoccer.ui.Codigo.CodigoFragment"
         android:label="@string/menu_codigo"

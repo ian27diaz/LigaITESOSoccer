@@ -194,6 +194,7 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
                             Log.v("IngresarJugadoresGG", "Capi Error -> $e")
                         }
                     })
+
                     jugadorUser.signUp()
                     jugadorUser.saveInBackground(SaveCallback { e ->
                         if (e == null) {
