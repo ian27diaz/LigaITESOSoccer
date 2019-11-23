@@ -1,14 +1,15 @@
 package ian.meda.ligaitesosoccer
 
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.parse.ParseSession
 import com.parse.ParseUser
+import ian.meda.ligaitesosoccer.utils.SESSION_IS_IN_PLAYER_REGISTRATION
+import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
 import org.jetbrains.anko.startActivity
 
 class Login () :  AppCompatActivity(), View.OnClickListener {
@@ -40,7 +41,15 @@ class Login () :  AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.login_darDeAlta -> {
+                val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+                val isInPlayerRegistration = sharedPreferences.getBoolean(SESSION_IS_IN_PLAYER_REGISTRATION, false)
+                /* if(!isInPlayerRegistration)
+                    startActivity<CrearEquipo>()
+                else
+                    startActivity<IngresarJugadores>()
+                */
                 startActivity<CrearEquipo>()
+
             }
         }
     }

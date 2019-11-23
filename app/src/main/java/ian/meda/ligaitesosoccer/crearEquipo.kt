@@ -1,6 +1,7 @@
 package ian.meda.ligaitesosoccer
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,13 +18,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.parse.ParseException
-import com.parse.ParseFile
-import com.parse.ParseObject
-import com.parse.SaveCallback
+import com.parse.*
 import ian.meda.ligaitesosoccer.beans.Equipo
-import ian.meda.ligaitesosoccer.utils.currCapitan
-import ian.meda.ligaitesosoccer.utils.currEquipo
+import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.startActivity
 import java.io.ByteArrayOutputStream
@@ -112,6 +109,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_continuar_SE -> {
+
                 //Es la variable compartida currEquipo del utils del SharedData
                 val teamName = nombreEquipo.text.toString()
                 if(teamName == "" || nombreCapitan.text.toString() == ""
@@ -137,15 +135,62 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                     newEquipo.put("partidosJugados", 0)
                     newEquipo.put("golesContra", 0)
                     newEquipo.put("partidosPerdidos", 0)
+                    newEquipo.put("plantillaValida", false)
 
+                    val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
 
                     newEquipo.saveInBackground (SaveCallback { e ->
                         if (e == null) {
+                            editor.putString(SESSION_CREATE_TEAM_ID, newEquipo.objectId)
+                            editor.putBoolean(SESSION_IS_IN_PLAYER_REGISTRATION, true)
+                            editor.apply()
                             currEquipo = Equipo(
                                 teamName, false, 0, 0, escudoImage,
                                 comprobanteImage, 0, 0, 0, 0,
-                                0, 0, newEquipo.objectId
+                                0, 0, newEquipo.objectId, false
                             )
+
+                            val capitanUser = ParseUser()
+                            val jugadorUser = ParseUser()
+                            capitanUser.username = "capitan${currEquipo.nombre}"
+                            jugadorUser.username = "jugador${currEquipo.nombre}"
+                            capitanUser.setPassword("Pr1v4d0&j3j3")
+                            jugadorUser.setPassword("Pr1v4d0&j3j3")
+                            capitanUser.email = currCapitan.email
+                            jugadorUser.email = "example@hotmail.com"
+                            capitanUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
+                            jugadorUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
+                            capitanUser.put("esAdmin", false)
+                            jugadorUser.put("esAdmin", false)
+                            capitanCode = currEquipo.nombre.replace(" ", "") + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
+                            + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
+                            jugadorCode = currEquipo.nombre.replace(" ", "") + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
+                            + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
+                            capitanUser.put("code", capitanCode)
+                            jugadorUser.put("code", jugadorCode)
+                            capitanUser.put("esCapitan", true)
+                            jugadorUser.put("esCapitan", false)
+                            capitanUser.signUp()
+                            capitanUser.saveInBackground(SaveCallback { e ->
+                                if (e == null) {
+                                    Log.v("IngresarJugadoresGG", "Capitan guardado")
+                                    ParseUser.logOut()
+                                } else {
+                                    Log.v("IngresarJugadoresGG", "Capi Error -> $e")
+                                }
+                            })
+
+                            jugadorUser.signUp()
+                            jugadorUser.saveInBackground(SaveCallback { e ->
+                                if (e == null) {
+                                    Log.v("IngresarJugadoresGG", "jugador guardado")
+                                    ParseUser.logOut()
+                                } else {
+                                    Log.v("IngresarJugadoresGG", "jugador Error -> $e")
+                                }
+                            })
+
                         } else {
                             Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
                             Log.v("CrearEquipo", "Error -> $e")
