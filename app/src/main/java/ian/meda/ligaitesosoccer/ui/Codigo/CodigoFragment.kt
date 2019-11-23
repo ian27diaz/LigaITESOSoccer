@@ -79,6 +79,7 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                             editor.putString(SESSION_USERNAME, usuario.getString("username"))
                                             if(usuario.getBoolean("esAdmin")) {
                                                 editor.putString(SESSION_USERTYPE, "ADMIN")
+                                                startActivity<MainActivity>()
                                             } else if(usuario.getBoolean("esCapitan")) {
                                                 editor.putString(SESSION_USERTYPE, "CAPITAN")
                                                 editor.putString(SESSION_TEAM, usuario.getParseObject("idEquipo")?.objectId)
@@ -93,6 +94,8 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                         startActivity<MainActivity>()
 
                                     }
+                                } else {
+
                                 }
                             }
 

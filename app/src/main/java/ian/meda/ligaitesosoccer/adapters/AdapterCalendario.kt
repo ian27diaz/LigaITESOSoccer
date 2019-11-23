@@ -1,5 +1,6 @@
 package ian.meda.ligaitesosoccer.adapters
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -73,8 +74,8 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val match8result: TextView = view.findViewById(R.id.fragment_calendario_enfrentamiento8_resultado_fecha)
     private val match8team2: TextView = view.findViewById(R.id.fragment_calendario_enfrentamiento8_equipo2)
     private val match8ver: Button = view.findViewById(R.id.fragment_calendario_enfrentamiento8_ver)
-    val context = view.getContext()
-    val intent = Intent(context, PartidoActivity::class.java)
+    private val context: Context = view.context
+    private val intent = Intent(context, PartidoActivity::class.java)
 
 
     fun bind(jornada : MutableList<Enfrentamiento>, position: Int){

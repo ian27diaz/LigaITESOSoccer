@@ -1,6 +1,7 @@
 package ian.meda.ligaitesosoccer
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -20,19 +21,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.parse.ParseFile
 import com.parse.ParseObject
-import com.parse.ParseUser
-import com.parse.SaveCallback
 import ian.meda.ligaitesosoccer.adapters.AdapterIngresarJugadores
 import ian.meda.ligaitesosoccer.beans.Jugador
-import ian.meda.ligaitesosoccer.utils.capitanCode
-import ian.meda.ligaitesosoccer.utils.currCapitan
-import ian.meda.ligaitesosoccer.utils.currEquipo
-import ian.meda.ligaitesosoccer.utils.jugadorCode
+import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.startActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import kotlin.random.Random
 
 class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -41,7 +36,6 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var addButton: ImageButton
     private lateinit var nextButton: Button
-    /*private lateinit var deleteButton: ImageButton //Este va en el adapter */
     private lateinit var currentImageView: ImageView
     private lateinit var recyclerView: RecyclerView
     private var currentJugador = Jugador()
@@ -127,6 +121,9 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
                 jugadoresContador++
             }
             R.id.ingresar_jugadores_btn_siguiente -> {
+                val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+                val teamId = sharedPreferences.getString(SESSION_CREATE_TEAM_ID, "")
+
                 currCapitan.pointer = currEquipo.objectId
                 jugadores[0].pointer = currEquipo.objectId
                 if(jugadoresContador < 7) {
@@ -166,43 +163,7 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
 
                     }
 
-                    val capitanUser = ParseUser()
-                    val jugadorUser = ParseUser()
-                    capitanUser.username = "capitan${currEquipo.nombre}"
-                    jugadorUser.username = "jugador${currEquipo.nombre}"
-                    capitanUser.setPassword("Pr1v4d0&j3j3")
-                    jugadorUser.setPassword("Pr1v4d0&j3j3")
-                    capitanUser.email = currCapitan.email
-                    jugadorUser.email = "example@hotmail.com"
-                    capitanUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
-                    jugadorUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
-                    capitanUser.put("esAdmin", false)
-                    jugadorUser.put("esAdmin", false)
-                    capitanCode = currEquipo.nombre.replace(" ", "") + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
-                    + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
-                    jugadorCode = currEquipo.nombre.replace(" ", "") + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
-                    + Random.nextInt(100) + Random.nextInt(100) + Random.nextInt(100)
-                    capitanUser.put("code", capitanCode)
-                    jugadorUser.put("code", jugadorCode)
-                    capitanUser.put("esCapitan", true)
-                    jugadorUser.put("esCapitan", false)
-                    capitanUser.signUp()
-                    capitanUser.saveInBackground(SaveCallback { e ->
-                        if (e == null) {
-                            Log.v("IngresarJugadoresGG", "Capitan guardado")
-                        } else {
-                            Log.v("IngresarJugadoresGG", "Capi Error -> $e")
-                        }
-                    })
 
-                    jugadorUser.signUp()
-                    jugadorUser.saveInBackground(SaveCallback { e ->
-                        if (e == null) {
-                            Log.v("IngresarJugadoresGG", "jugador guardado")
-                        } else {
-                            Log.v("IngresarJugadoresGG", "jugador Error -> $e")
-                        }
-                    })
                     startActivity<SolicitudDeEspera>()
                 }
             }
