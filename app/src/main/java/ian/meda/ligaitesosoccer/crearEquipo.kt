@@ -159,7 +159,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                             capitanUser.setPassword("Pr1v4d0&j3j3")
                             jugadorUser.setPassword("Pr1v4d0&j3j3")
                             capitanUser.email = currCapitan.email
-                            jugadorUser.email = "example@hotmail.com"
+                            jugadorUser.email = "jug_${currCapitan.email}"
                             capitanUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
                             jugadorUser.put("idEquipo", ParseObject.createWithoutData("Equipo", currEquipo.objectId))
                             capitanUser.put("esAdmin", false)
