@@ -63,8 +63,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
         expediente = findViewById(R.id.crear_equipo_et_expediente_crearequipo)
         correoElectronico = findViewById(R.id.crear_equipo_et_correo)
 
-
-
+        
         nombreEquipo.imeOptions = EditorInfo.IME_ACTION_DONE
         nombreEquipo.singleLine = true
         nombreCapitan.imeOptions = EditorInfo.IME_ACTION_DONE
@@ -136,6 +135,8 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                     newEquipo.put("golesContra", 0)
                     newEquipo.put("partidosPerdidos", 0)
                     newEquipo.put("plantillaValida", false)
+                    newEquipo.put("accionPendiente", false)
+
 
                     val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
@@ -148,7 +149,7 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                             currEquipo = Equipo(
                                 teamName, false, 0, 0, escudoImage,
                                 comprobanteImage, 0, 0, 0, 0,
-                                0, 0, newEquipo.objectId, false
+                                0, 0, newEquipo.objectId, false, false
                             )
 
                             val capitanUser = ParseUser()
