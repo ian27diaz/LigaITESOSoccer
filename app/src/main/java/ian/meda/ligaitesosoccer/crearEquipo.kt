@@ -196,13 +196,9 @@ class CrearEquipo() :  AppCompatActivity(), View.OnClickListener {
                             Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
                             Log.v("CrearEquipo", "Error -> $e")
                         }
+                        startActivity<SolicitudDeEspera>()
                     })
-
-
-
-                    startActivity<IngresarJugadores>()
                 }
-
             }
         }
     }

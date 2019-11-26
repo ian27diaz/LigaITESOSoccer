@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
         android:background = "@android:color/holo_blue_bright"
-        android:text="@string/wait_screen_inicio"
+        android:text="Modo espectador"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

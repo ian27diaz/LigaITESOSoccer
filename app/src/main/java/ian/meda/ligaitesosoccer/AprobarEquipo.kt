@@ -2,6 +2,7 @@ package ian.meda.ligaitesosoccer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -14,6 +15,13 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
+import com.parse.FunctionCallback
+import com.parse.ParseCloud
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class AprobarEquipo : AppCompatActivity() {
 
@@ -36,6 +44,9 @@ class AprobarEquipo : AppCompatActivity() {
             val query = ParseQuery.getQuery<ParseObject>("Equipo")
             query.whereEqualTo("nombre", equipo)
 
+            val queryuser = ParseUser.getQuery()
+            queryuser.include("idEquipo")
+
             query.findInBackground ( object: FindCallback<ParseObject> {
 
                     var datos: List<ParseObject> = arrayListOf()
@@ -51,14 +62,31 @@ class AprobarEquipo : AppCompatActivity() {
 
                         botonAceptar.setOnClickListener {
                             datos[0].put("esEquipoValido",true)
+                            datos[0].put("accionPendiente",true)
                             datos[0].saveInBackground()
                             startActivity<MainActivity>()
                         }
 
                         botonRechazar.setOnClickListener {
-                            datos[0].delete()
-                            datos[0].saveInBackground()
-                            startActivity<MainActivity>()
+
+
+                            queryuser.findInBackground ( object: FindCallback<ParseUser> {
+                                var users: List<ParseUser> = arrayListOf()
+                                override fun done(userList: List<ParseUser>, e: ParseException?) {
+                                    if (e == null) {
+                                        //users = userList.filter {u -> (u.getParseObject("idEquipo")?.getString("nombre") ==  equipo) }
+                                        //toast(users[0].getParseObject("idEquipo")?.getString("nombre").toString()).show()
+                                        //users[0].deleteInBackground()
+                                        //users[1].delete()
+                                        //users[0].saveInBackground()
+                                        //users[1].saveInBackground()
+                                        datos[0].delete()
+                                        datos[0].saveInBackground()
+                                        startActivity<MainActivity>()
+                                    }
+                                }
+                            })
+
                         }
                     }
                 }

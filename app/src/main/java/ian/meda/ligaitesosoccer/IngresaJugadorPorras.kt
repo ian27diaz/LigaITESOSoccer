@@ -40,33 +40,40 @@ class IngresaJugadorPorras : AppCompatActivity() {
                             RecyclerJugadores.layoutManager = LinearLayoutManager(this@IngresaJugadorPorras)
                         }
 
-                        botonAceptar.setOnClickListener {
+                        val queryequipo = ParseQuery.getQuery<ParseObject>("Equipo")
 
-                            val queryequipo = ParseQuery.getQuery<ParseObject>("Equipo")
+
+
                             queryequipo.whereEqualTo("objectId",equipo)
                             queryequipo.getFirstInBackground ( object: GetCallback<ParseObject> {
                                 override fun done(equipoParse: ParseObject, e: ParseException?) {
                                     if (e == null) {
-                                        toast(equipoParse.objectId).show()
-                                        equipoParse.put("plantillaValida",true)
-                                        equipoParse.saveInBackground()
-                                        startActivity<MainActivity>()
+                                        botonAceptar.setOnClickListener {
+
+                                            toast(equipoParse.objectId).show()
+                                            equipoParse.put("plantillaValida", true)
+                                            equipoParse.put("accionPendiente", false)
+                                            equipoParse.saveInBackground()
+                                            startActivity<MainActivity>()
+                                        }
+
+                                        botonRechazar.setOnClickListener {
+                                            for (i in jugadores.indices){
+                                                jugadores[i].delete()
+                                            }
+                                            for (i in jugadores.indices){
+                                                jugadores[i].saveInBackground()
+                                            }
+                                            equipoParse.put("accionPendiente", true)
+                                            equipoParse.saveInBackground()
+                                            startActivity<MainActivity>()
+                                        }
+
                                     }
                                 }
                             })
                         }
-
-                        botonRechazar.setOnClickListener {
-                            for (i in jugadores.indices){
-                                jugadores[i].delete()
-                            }
-                            for (i in jugadores.indices){
-                                jugadores[i].saveInBackground()
-                            }
-                            startActivity<MainActivity>()
-                        }
                     }
-                }
             })
         }
     }
