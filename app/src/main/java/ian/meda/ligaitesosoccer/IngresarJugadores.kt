@@ -19,8 +19,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.parse.ParseFile
-import com.parse.ParseObject
+import com.parse.*
 import ian.meda.ligaitesosoccer.adapters.AdapterIngresarJugadores
 import ian.meda.ligaitesosoccer.beans.Jugador
 import ian.meda.ligaitesosoccer.utils.*
@@ -109,7 +108,12 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
         when(v?.id) {
             R.id.ingresar_jugadores_btn_nuevo_jugador -> {
                 currCapitan.pointer = currEquipo.objectId
-                val newJugador = Jugador()
+                val newJugador : Jugador
+                //if(currEquipo.objectId == ""){
+                    //newJugador = Jugador(equipo)
+                //}else{
+                    newJugador = Jugador()
+                //}
                 jugadores.add(newJugador)
                 recyclerView.adapter = AdapterIngresarJugadores(jugadores,
                     {jugadorItem : Jugador, imageView: ImageView -> jugadorFotoItemClicked(jugadorItem, imageView)},
@@ -122,7 +126,7 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
             }
             R.id.ingresar_jugadores_btn_siguiente -> {
                 val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
-                val teamId = sharedPreferences.getString(SESSION_CREATE_TEAM_ID, "")
+                var teamId = sharedPreferences.getString(SESSION_CREATE_TEAM_ID, "")
 
                 currCapitan.pointer = currEquipo.objectId
                 jugadores[0].pointer = currEquipo.objectId
@@ -162,9 +166,21 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
                         jugadorParse.saveInBackground()
 
                     }
+                    val query = ParseQuery.getQuery<ParseObject>("Equipo")
+                    query.whereEqualTo("objectId", currEquipo.objectId)
+                    query.findInBackground ( object: FindCallback<ParseObject> {
+                        override fun done(equipoList: List<ParseObject>, e: ParseException?) {
+                            if (e == null) {
+                                equipoList[0].put("accionPendiente", false)
+                                equipoList[0].saveInBackground()
+                                startActivity<SolicitudDeEspera>()
+
+                            }
+                        }
+                    })
 
 
-                    startActivity<SolicitudDeEspera>()
+
                 }
             }
         }

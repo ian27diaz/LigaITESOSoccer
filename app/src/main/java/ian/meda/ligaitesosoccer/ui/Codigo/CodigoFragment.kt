@@ -14,12 +14,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 import com.google.android.material.button.MaterialButton
-import com.parse.FindCallback
-import com.parse.ParseException
-import com.parse.ParseObject
-import com.parse.ParseQuery
+import com.parse.*
+import ian.meda.ligaitesosoccer.IngresarJugadores
 import ian.meda.ligaitesosoccer.MainActivity
 import ian.meda.ligaitesosoccer.R
+import ian.meda.ligaitesosoccer.SolicitudDeEspera
+import ian.meda.ligaitesosoccer.beans.Equipo
 import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
@@ -65,13 +65,11 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                 } else {
                     doAsync {
                         val query = ParseQuery.getQuery<ParseObject>("_User");
-                        query.include("idEquipo");
-                        query.findInBackground(object: FindCallback<ParseObject> {
-                            override fun done(usuarios: List<ParseObject>, e: ParseException?) {
+                        query.include("idEquipo")
+                        query.whereEqualTo("code", codigo)
+                        query.getFirstInBackground(object: GetCallback<ParseObject> {
+                            override fun done(usuario: ParseObject, e: ParseException?) {
                                 if(e == null){
-                                    Log.v("CodigoFragment", "Usuarios: ${usuarios.size}")
-                                    for(usuario : ParseObject in usuarios){
-                                        if(usuario.getString("code").equals(codigo)){
                                             val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
                                             val editor = sharedPreferences.edit()
                                             Toast.makeText(context, "User: ${usuario.objectId}, EquipoID: ${usuario.getParseObject("idEquipo")?.objectId}", Toast.LENGTH_SHORT ).show()
@@ -89,15 +87,23 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                             }
 
                                             editor.apply()
-                                            break
+
+                                            if (usuario.getParseObject("idEquipo")?.getBoolean("esEquipoValido")==false ||
+                                                usuario.getParseObject("idEquipo")?.getBoolean("plantillaValida")==false ){
+                                                if (usuario.getParseObject("idEquipo")?.getBoolean("accionPendiente")==true &&
+                                                    usuario.getBoolean("esCapitan")==true ){
+                                                    var nuevoEquipito = Equipo()
+                                                    nuevoEquipito.objectId = usuario.getParseObject("idEquipo")?.objectId.toString()
+                                                    currEquipo = nuevoEquipito
+                                                    startActivity<IngresarJugadores>()
+                                                }else{
+                                                    startActivity<SolicitudDeEspera>()
+                                                }
+                                            }else{
+                                                startActivity<MainActivity>()
+                                            }
                                         }
-                                        startActivity<MainActivity>()
-
                                     }
-                                } else {
-
-                                }
-                            }
 
                         })
                     }

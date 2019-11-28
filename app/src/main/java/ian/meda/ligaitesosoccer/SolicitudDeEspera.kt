@@ -1,11 +1,12 @@
 package ian.meda.ligaitesosoccer
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import ian.meda.ligaitesosoccer.utils.capitanCode
-import ian.meda.ligaitesosoccer.utils.jugadorCode
+import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.startActivity
 
 class SolicitudDeEspera :  AppCompatActivity(), View.OnClickListener{
@@ -27,8 +28,15 @@ class SolicitudDeEspera :  AppCompatActivity(), View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        startActivity<Login>()
-    }
+        val sharedPreferences = this!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(SESSION_USER_ID, "")
+        editor.putString(SESSION_TEAM, "")
+        editor.putString(SESSION_USERNAME, "")
+        editor.putString(SESSION_USERTYPE, "")
+        Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show()
+        editor.apply()
+        startActivity<MainActivity>()    }
 
 
 }
