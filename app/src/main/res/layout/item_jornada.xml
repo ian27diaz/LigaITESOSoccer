@@ -66,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento1_resultado_fecha"
         />
 
+
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento1_equipo2"
         android:layout_width="wrap_content"
@@ -152,6 +153,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento3_resultado_fecha"
         />
 
+
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento3_equipo2"
         android:layout_width="wrap_content"
@@ -194,6 +196,7 @@
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento4_resultado_fecha"
         />
+
 
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento4_equipo2"
@@ -238,6 +241,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento5_resultado_fecha"
         />
 
+
     <TextView
         android:id="@+id/fragment_calendario_enfrentamiento5_equipo2"
         android:layout_width="wrap_content"
@@ -279,6 +283,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento6_resultado_fecha"
+        android:visibility="visible"
         />
 
     <TextView
@@ -322,6 +327,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento7_resultado_fecha"
+        android:visibility="visible"
         />
 
     <TextView
@@ -365,6 +371,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintRight_toLeftOf="@id/fragment_calendario_guideline_50"
         app:layout_constraintTop_toBottomOf="@id/fragment_calendario_enfrentamiento8_resultado_fecha"
+        android:visibility="visible"
         />
 
     <TextView

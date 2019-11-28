@@ -7,35 +7,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_30_h"
+        android:id="@+id/ingresa_jugador_porras_guideline_30_h"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_10_v"
+        android:id="@+id/ingresa_jugador_porras_guideline_10_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_30_v"
+        android:id="@+id/ingresa_jugador_porras_guideline_30_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_70_v"
+        android:id="@+id/ingresa_jugador_porras_guideline_70_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/ingresa_jugador_guideline_90_v"
+        android:id="@+id/ingresa_jugador_porras_guideline_90_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -43,90 +43,87 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ingresa_jugador_foto"
+        android:id="@+id/ingresa_jugador_porras_foto"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/hector_chavez"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_30_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_70_v"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_30_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_70_v"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ingresa_jugador_guideline_30_h"
+        app:layout_constraintBottom_toTopOf="@id/ingresa_jugador_porras_guideline_30_h"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_etiqueta_nombre"
+        android:id="@+id/ingresa_jugador_porras_etiqueta_nombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
         android:text="Nombre"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_foto"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_foto"
         />
+
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_nombre"
+        android:id="@+id/ingresa_jugador_porras_nombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_nombre"
-        android:hint="@string/item_ingresa_jugador_nombre"
+        app:layout_constraintStart_toEndOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_etiqueta_nombre"
         android:paddingBottom="8dp"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_etiqueta_expediente"
+        android:id="@+id/ingresa_jugador_porras_etiqueta_expediente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
         android:text="@string/item_ingresa_jugador_expediente"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_nombre"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_nombre"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_expediente"
+        android:id="@+id/ingresa_jugador_porras_expediente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_expediente"
-        android:hint="ingresa expediente"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_etiqueta_expediente"
         android:paddingBottom="8dp"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_etiqueta_correo"
+        android:id="@+id/ingresa_jugador_porras_etiqueta_correo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Correo:"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_expediente"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_expediente"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_correo"
+        android:id="@+id/ingresa_jugador_porras_correo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_90_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_correo"
-        android:hint="ingresa correo electronico"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_etiqueta_correo"
         android:paddingBottom="8dp"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_etiqueta_carrera"
+        android:id="@+id/ingresa_jugador_porras_etiqueta_carrera"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_70_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_correo"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_70_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_correo"
         android:text="Carrera:"
         />
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ingresa_jugador_carrera"
+        android:id="@+id/ingresa_jugador_porras_carrera"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_guideline_10_v"
-        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_guideline_70_v"
-        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_etiqueta_carrera"
-        android:hint="ingresa carrera"
+        app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
+        app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_70_v"
+        app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_etiqueta_carrera"
         />
 
 

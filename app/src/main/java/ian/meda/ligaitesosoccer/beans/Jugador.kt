@@ -8,4 +8,7 @@ data class Jugador(var nombre: String, var expediente: String, var goles: Int, v
                    var fotoCargada: Boolean) {
     constructor(): this("", "", 0, Uri.parse(""),
         false, false, "", currEquipo.objectId, false)
+
+    constructor(equipo: String): this("", "", 0, Uri.parse(""),
+        false, false, "", equipo, false)
 }

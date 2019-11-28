@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import ian.meda.ligaitesosoccer.R
 import ian.meda.ligaitesosoccer.beans.Enfrentamiento
 import ian.meda.ligaitesosoccer.PartidoActivity
+import ian.meda.ligaitesosoccer.utils.SESSION_USERTYPE
+import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -76,9 +79,23 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val match8ver: Button = view.findViewById(R.id.fragment_calendario_enfrentamiento8_ver)
     private val context: Context = view.context
     private val intent = Intent(context, PartidoActivity::class.java)
+    val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+    val sessionId = sharedPreferences.getString(SESSION_USERTYPE, "")
 
 
     fun bind(jornada : MutableList<Enfrentamiento>, position: Int){
+
+        if (sessionId=="ADMIN"){
+            match1ver.text = "Editar"
+            match2ver.text = "Editar"
+            match3ver.text = "Editar"
+            match4ver.text = "Editar"
+            match5ver.text = "Editar"
+            match6ver.text = "Editar"
+            match7ver.text = "Editar"
+            match8ver.text = "Editar"
+        }
+
         if ((position%2)==1){
             vista.setBackgroundResource(R.drawable.calendario_gradient_background1)
         }else{
@@ -96,6 +113,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
             match1result.setText(jornada.get(0).golesEquipo1.toString() + " - " + jornada.get(0).golesEquipo2.toString())
         }
         match1team2.setText(jornada.get(0).equipo2)
+
         match1ver.setOnClickListener {
             intent.putExtra("enfrentamiento", jornada.get(0).idEnfrentamiento)
             context.startActivity(intent)
