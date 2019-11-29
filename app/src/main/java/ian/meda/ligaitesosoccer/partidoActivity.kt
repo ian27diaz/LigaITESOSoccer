@@ -1,5 +1,7 @@
 package ian.meda.ligaitesosoccer
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +21,10 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.View
 import android.widget.*
+import ian.meda.ligaitesosoccer.utils.SESSION_USERTYPE
+import ian.meda.ligaitesosoccer.utils.SHARED_PREFERENCES
 
 
 class PartidoActivity (): AppCompatActivity() {
@@ -29,6 +34,11 @@ class PartidoActivity (): AppCompatActivity() {
         setContentView(R.layout.activity_partido)
 
         var enfrentamiento = intent.getStringExtra("enfrentamiento")
+        val intent = Intent(this@PartidoActivity, PartidoActivity::class.java)
+        intent.putExtra("enfrentamiento", enfrentamiento)
+
+        val sharedPreferences = this@PartidoActivity!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        val sessionId = sharedPreferences.getString(SESSION_USERTYPE, "")
 
         var listView1 = findViewById<ListView>(R.id.partido_eventos_local)
         var listView2 = findViewById<ListView>(R.id.partido_eventos_visitas)
@@ -56,8 +66,18 @@ class PartidoActivity (): AppCompatActivity() {
         var idVisita: String? = ""
 
         var diferenciaMarcador = 0
+        var diferenciaMarcadorAnterior = 0
 
         doAsync {
+            if (sessionId=="ADMIN"){
+                spinnerLocalTipo.visibility = View.VISIBLE
+                spinnerLocalJugadores.visibility = View.VISIBLE
+                botonAceptarLocal.visibility = View.VISIBLE
+                spinnerVisitaTipo.visibility = View.VISIBLE
+                spinnerVisitaJugadores.visibility = View.VISIBLE
+                botonAceptarVisita.visibility = View.VISIBLE
+            }
+
             spinnerLocalTipo.adapter = adapterspinnerLocalTipo
             spinnerVisitaTipo.adapter = adapterspinnerVisitaTipo
 
@@ -87,6 +107,9 @@ class PartidoActivity (): AppCompatActivity() {
                             marcadorlocalTitle.text = marcador[0].getInt("golesEquipo1").toString()
                             marcadorvisitaTitle.text = marcador[0].getInt("golesEquipo2").toString()
                             visitaTitle.text = marcador[0].getParseObject("visitante")?.getString("nombre")
+
+                            diferenciaMarcador = marcador[0].getInt("golesEquipo1") - marcador[0].getInt("golesEquipo2")
+                            diferenciaMarcadorAnterior = marcador[0].getInt("golesEquipo1") - marcador[0].getInt("golesEquipo2")
 
                             idLocal = marcador[0].getParseObject("local")?.objectId
                             idVisita = marcador[0].getParseObject("visitante")?.objectId
@@ -139,36 +162,269 @@ class PartidoActivity (): AppCompatActivity() {
                                     val adapterspinnerVisitaJugador = ArrayAdapter(this@PartidoActivity, android.R.layout.simple_spinner_dropdown_item, jugadoresVisita)
                                     spinnerVisitaJugadores.adapter = adapterspinnerVisitaJugador
 
+
                                     botonAceptarLocal.setOnClickListener {
                                         toast(spinnerLocalJugadores.selectedItem.toString()+ " -> " + spinnerLocalTipo.selectedItem.toString()).show()
 
-                                        if (spinnerLocalTipo.selectedItem.toString() == "Amarilla"){
+                                        var eventoParse = ParseObject("JornadaJugadorEvento")
+                                        var jugadorParse = jugadoresList.find { j-> j.getString("Nombre")== spinnerLocalJugadores.selectedItem.toString() }
+                                        var equipoLocalParse = marcador[0].getParseObject("local")
+                                        var equipoVisitaParse = marcador[0].getParseObject("visitante")
 
+                                        eventoParse.put("jugador", ParseObject.createWithoutData("Jugador", jugadorParse?.objectId))
+
+                                        eventoParse.put("jornadaenfrentamiento", ParseObject.createWithoutData("JornadaEnfrentamiento", enfrentamiento))
+                                        eventoParse.put("evento", spinnerLocalTipo.selectedItem.toString())
+                                        eventoParse.saveInBackground()
+
+                                        if (spinnerLocalTipo.selectedItem.toString() == "Amarilla"){
+                                            jugadorParse?.put("Amarillas", jugadorParse?.getInt("Amarillas")+1)
+                                            jugadorParse?.saveInBackground()
                                         }
 
                                         if(spinnerLocalTipo.selectedItem.toString() == "Roja"){
-
+                                            jugadorParse?.put("Rojas", jugadorParse?.getInt("Rojas")+1)
+                                            jugadorParse?.saveInBackground()
                                         }
 
                                         if(spinnerLocalTipo.selectedItem.toString() == "Gol"){
                                             diferenciaMarcador += 1
+                                            jugadorParse?.put("GolesTotales", jugadorParse?.getInt("GolesTotales")+1)
+                                            jugadorParse?.saveInBackground()
+
+                                            equipoLocalParse?.put("golesFavor", equipoLocalParse?.getInt("golesFavor")+1)
+                                            equipoLocalParse?.put("diferenciaGoles", equipoLocalParse?.getInt("diferenciaGoles")+1)
+
+                                            equipoVisitaParse?.put("golesContra", equipoVisitaParse?.getInt("golesContra")+1)
+                                            equipoVisitaParse?.put("diferenciaGoles", equipoVisitaParse?.getInt("diferenciaGoles")-1)
+
+
+                                            marcador[0].put("golesEquipo1", marcador[0].getInt("golesEquipo1")+1)
+                                            marcador[0].saveInBackground()
+
                                         }
+                                        if (marcador[0].getBoolean("editado")== false){
+                                            marcador[0].put("editado", true)
+                                            marcador[0].saveInBackground()
+
+                                            equipoLocalParse?.put("partidosJugados",equipoLocalParse.getInt("partidosJugados")+1)
+                                            equipoVisitaParse?.put("partidosJugados",equipoVisitaParse.getInt("partidosJugados")+1)
+
+                                            if (diferenciaMarcador.compareTo(0) == 0){
+                                                equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+1)
+                                                equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+1)
+                                                equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+
+                                            }else if (diferenciaMarcador.compareTo(0) == 1){
+                                                equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+3)
+                                                equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+
+                                            }else if (diferenciaMarcador.compareTo(0) == -1){
+                                                equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+3)
+                                                equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                            }
+
+                                        }else if (diferenciaMarcador.compareTo(0) != diferenciaMarcadorAnterior.compareTo(0)){
+                                            if (diferenciaMarcador.compareTo(0) == 0){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-2)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+1)
+
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")-1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")-1)
+
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==-1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+1)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-2)
+
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")-1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")-1)
+                                                }
+
+                                            }else if (diferenciaMarcador.compareTo(0) == -1){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-3)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+3)
+
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")-1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")-1)
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==0){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-1)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+2)
+
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")-1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")-1)
+                                                }
+
+                                            }else if (diferenciaMarcador.compareTo(0) == 1){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==0){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+2)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-1)
+
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")-1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")-1)
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==-1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+3)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-3)
+
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")-1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")-1)
+                                                }
+                                            }
+                                        }
+                                        equipoLocalParse?.saveInBackground()
+                                        equipoVisitaParse?.saveInBackground()
+                                        this@PartidoActivity.startActivity(intent)
                                     }
 
                                     botonAceptarVisita.setOnClickListener {
                                         toast(spinnerVisitaJugadores.selectedItem.toString()+ " -> " + spinnerVisitaTipo.selectedItem.toString()).show()
 
-                                        if (spinnerVisitaTipo.selectedItem.toString() == "Amarilla"){
+                                        var eventoParse = ParseObject("JornadaJugadorEvento")
+                                        var jugadorParse = jugadoresList.find { j-> j.getString("Nombre")== spinnerVisitaJugadores.selectedItem.toString() }
+                                        var equipoLocalParse = marcador[0].getParseObject("local")
+                                        var equipoVisitaParse = marcador[0].getParseObject("visitante")
 
+                                        eventoParse.put("jugador", ParseObject.createWithoutData("Jugador", jugadorParse?.objectId))
+
+                                        eventoParse.put("jornadaenfrentamiento", ParseObject.createWithoutData("JornadaEnfrentamiento", enfrentamiento))
+                                        eventoParse.put("evento", spinnerVisitaTipo.selectedItem.toString())
+                                        eventoParse.saveInBackground()
+
+                                        if (spinnerVisitaTipo.selectedItem.toString() == "Amarilla"){
+                                            jugadorParse?.put("Amarillas", jugadorParse?.getInt("Amarillas")+1)
+                                            jugadorParse?.saveInBackground()
                                         }
 
                                         if(spinnerVisitaTipo.selectedItem.toString() == "Roja"){
-
+                                            jugadorParse?.put("Rojas", jugadorParse?.getInt("Rojas")+1)
+                                            jugadorParse?.saveInBackground()
                                         }
 
                                         if(spinnerVisitaTipo.selectedItem.toString() == "Gol"){
                                             diferenciaMarcador += -1
+                                            jugadorParse?.put("GolesTotales", jugadorParse?.getInt("GolesTotales")+1)
+                                            jugadorParse?.saveInBackground()
+
+                                            marcador[0].put("golesEquipo2", marcador[0].getInt("golesEquipo2")+1)
+                                            marcador[0].saveInBackground()
+
+                                            equipoVisitaParse?.put("golesFavor", equipoVisitaParse?.getInt("golesFavor")+1)
+                                            equipoVisitaParse?.put("diferenciaGoles", equipoVisitaParse?.getInt("diferenciaGoles")+1)
+
+                                            equipoLocalParse?.put("golesContra", equipoLocalParse?.getInt("golesContra")+1)
+                                            equipoLocalParse?.put("diferenciaGoles", equipoLocalParse?.getInt("diferenciaGoles")-1)
                                         }
+
+                                        if (marcador[0].getBoolean("editado")== false){
+                                            marcador[0].put("editado", true)
+                                            marcador[0].saveInBackground()
+
+                                            equipoLocalParse?.put("partidosJugados",equipoLocalParse.getInt("partidosJugados")+1)
+                                            equipoVisitaParse?.put("partidosJugados",equipoVisitaParse.getInt("partidosJugados")+1)
+
+                                            if (diferenciaMarcador.compareTo(0) == 0){
+                                                equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+1)
+                                                equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+1)
+                                                equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+
+                                            }else if (diferenciaMarcador.compareTo(0) == 1){
+                                                equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+3)
+                                                equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+
+                                            }else if (diferenciaMarcador.compareTo(0) == -1){
+                                                equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+3)
+                                                equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                            }
+
+                                        }else if (diferenciaMarcador.compareTo(0) != diferenciaMarcadorAnterior.compareTo(0)){
+                                            if (diferenciaMarcador.compareTo(0) == 0){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-2)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+1)
+
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")-1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")-1)
+
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==-1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+1)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-2)
+
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")+1)
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")-1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")+1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")-1)
+                                                }
+
+                                            }else if (diferenciaMarcador.compareTo(0) == -1){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-3)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+3)
+
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")-1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")-1)
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==0){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")-1)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")+2)
+
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")+1)
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")-1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")+1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")-1)
+                                                }
+
+                                            }else if (diferenciaMarcador.compareTo(0) == 1){
+                                                if (diferenciaMarcadorAnterior.compareTo(0)==0){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+2)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-1)
+
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                    equipoLocalParse?.put("partidosEmpatados",equipoLocalParse.getInt("partidosEmpatados")-1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+                                                    equipoVisitaParse?.put("partidosEmpatados",equipoVisitaParse.getInt("partidosEmpatados")-1)
+
+                                                }else if(diferenciaMarcadorAnterior.compareTo(0)==-1){
+                                                    equipoLocalParse?.put("puntosTotales",equipoLocalParse.getInt("puntosTotales")+3)
+                                                    equipoVisitaParse?.put("puntosTotales",equipoVisitaParse.getInt("puntosTotales")-3)
+
+                                                    equipoLocalParse?.put("partidosGanados",equipoLocalParse.getInt("partidosGanados")+1)
+                                                    equipoLocalParse?.put("partidosPerdidos",equipoLocalParse.getInt("partidosPerdidos")-1)
+                                                    equipoVisitaParse?.put("partidosPerdidos",equipoVisitaParse.getInt("partidosPerdidos")+1)
+                                                    equipoVisitaParse?.put("partidosGanados",equipoVisitaParse.getInt("partidosGanados")-1)
+                                                }
+                                            }
+                                        }
+
+                                        equipoLocalParse?.saveInBackground()
+                                        equipoVisitaParse?.saveInBackground()
+                                        this@PartidoActivity.startActivity(intent)
                                     }
                                 }
                             }
