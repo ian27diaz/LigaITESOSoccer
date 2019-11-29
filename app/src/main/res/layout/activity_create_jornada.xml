@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_create_jornada_guideline_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+    <TextView
+        android:id="@+id/activity_create_jornada_jornada_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/item_jornada_jornada_n"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:id="@+id/activity_create_jornada_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Cancelar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_linea_divisora"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <Button
+        android:id="@+id/activity_create_jornada_aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Aceptar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_linea_divisora"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <View
+        android:id="@+id/activity_create_jornada_linea_divisora"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="#072146"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_jornada_number"
+        />
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento1_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento2_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_jornada_number"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento1_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento2_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_jornada_number"/>
+
+
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento1_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento2_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_jornada_number"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento2_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento3_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento1_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento2_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento3_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento1_resultado_fecha"/>
+
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento2_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento3_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento1_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento3_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento4_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento2_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento3_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento4_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento2_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento3_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento4_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento2_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento4_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento5_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento3_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento4_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento5_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento3_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento4_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento5_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento3_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento5_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento6_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento4_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento5_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento6_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento4_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento5_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento6_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento4_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento6_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento7_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento5_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento6_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento7_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento5_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento6_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento7_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento5_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento7_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento8_equipo1"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento6_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento7_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento8_resultado_fecha"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento6_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento7_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_create_jornada_enfrentamiento8_equipo2"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento6_equipo2"/>
+    <!-- *************************************************************************************** -->
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento8_equipo1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento7_equipo1"
+        />
+
+    <Button
+        android:id="@+id/activity_create_jornada_enfrentamiento8_resultado_fecha"
+        android:textSize="12sp"
+        android:text="@string/activity_create_tanda_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintRight_toLeftOf="@id/activity_create_jornada_guideline_50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento7_resultado_fecha"/>
+
+    <Spinner
+        android:id="@+id/activity_create_jornada_enfrentamiento8_equipo2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/item_jornada_equipo_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_create_jornada_enfrentamiento7_equipo2"/>
+    <!-- *************************************************************************************** -->
+</androidx.constraintlayout.widget.ConstraintLayout>
