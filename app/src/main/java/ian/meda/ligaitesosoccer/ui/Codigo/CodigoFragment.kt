@@ -1,7 +1,6 @@
 package ian.meda.ligaitesosoccer.ui.Codigo
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,8 +11,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-
-import com.google.android.material.button.MaterialButton
 import com.parse.*
 import ian.meda.ligaitesosoccer.IngresarJugadores
 import ian.meda.ligaitesosoccer.MainActivity
@@ -22,9 +19,8 @@ import ian.meda.ligaitesosoccer.SolicitudDeEspera
 import ian.meda.ligaitesosoccer.beans.Equipo
 import ian.meda.ligaitesosoccer.utils.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
+
 
 class CodigoFragment : Fragment() , View.OnClickListener{
 
@@ -72,7 +68,6 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                                 if(e == null){
                                             val sharedPreferences = context!!.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
                                             val editor = sharedPreferences.edit()
-                                            Toast.makeText(context, "User: ${usuario.objectId}, EquipoID: ${usuario.getParseObject("idEquipo")?.objectId}", Toast.LENGTH_SHORT ).show()
                                             editor.putString(SESSION_USER_ID, usuario.objectId)
                                             editor.putString(SESSION_USERNAME, usuario.getString("username"))
                                             if(usuario.getBoolean("esAdmin")) {
@@ -117,7 +112,6 @@ class CodigoFragment : Fragment() , View.OnClickListener{
                 editor.putString(SESSION_TEAM, "")
                 editor.putString(SESSION_USERNAME, "")
                 editor.putString(SESSION_USERTYPE, "")
-                Toast.makeText(context, "Cerrar sesion", Toast.LENGTH_SHORT).show()
                 editor.apply()
                 startActivity<MainActivity>()
 

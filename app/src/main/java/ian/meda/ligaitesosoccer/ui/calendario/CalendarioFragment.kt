@@ -91,7 +91,7 @@ class CalendarioFragment : Fragment() {
                 fun addButtonClicked(position: Int) {
                     //Dar de alta la Jornada y la Jornada Enfrentamiento
                     //De mientras solo la Jornada-Enfrentamiento
-                    Toast.makeText(context, "Position: $position", Toast.LENGTH_LONG).show()
+
                     val intent: Intent =  Intent(context, ActivityCreateJornada::class.java)
                     intent.putExtra("jornadaNumber", position)
                     startActivity(intent)

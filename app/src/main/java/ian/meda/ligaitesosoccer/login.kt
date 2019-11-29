@@ -25,7 +25,6 @@ class Login () :  AppCompatActivity(), View.OnClickListener {
 
         login = findViewById(R.id.login_iniciar)
         crear_equipo = findViewById(R.id.login_darDeAlta)
-        Toast.makeText(this, ParseUser.getCurrentSessionToken(), Toast.LENGTH_LONG).show()
 
         ParseUser.logOut()
 
