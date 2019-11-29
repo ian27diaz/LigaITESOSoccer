@@ -7,23 +7,21 @@
     tools:context=".MainActivity">
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/login_image_iteso"
-        android:layout_marginTop="110dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/logo_iteso"
+        android:src="@mipmap/ic_ladyfutbol_foreground"
         />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_iniciar"
         android:text="@string/login_fut_ingresa"
         android:textColor="@android:color/white"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
-        android:background = "@android:color/holo_blue_bright"
+        android:background = "@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_image_iteso"
@@ -37,7 +35,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
-        android:background = "@android:color/holo_blue_bright"
+        android:background = "@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_iniciar"

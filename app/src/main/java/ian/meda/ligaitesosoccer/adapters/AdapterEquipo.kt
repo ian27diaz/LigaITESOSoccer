@@ -40,8 +40,8 @@ class JugadorViewHolder(view: View) : RecyclerView.ViewHolder(view){
         nombreJugador.text = jugador.getString("Nombre")
         expedienteCarrera.text = jugador.getString("Expediente")
         goles.text = "Goles: $golesNumber"
-        amarillas.text = "Amarillas: 0"
-        rojas.text = "Rojas: 0"
+        amarillas.text = "Amarillas: ${jugador.getNumber("Amarillas")}"
+        rojas.text = "Rojas: ${jugador.getNumber("Rojas")}"
         glide.load(jugador.getParseFile("Foto")!!.url).into(imagen)
     }
 }
