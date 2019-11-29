@@ -14,6 +14,18 @@
         app:layout_constraintGuide_percent="0.5"
         />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/item_jornada_addButton_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="150dp"
+        android:paddingEnd="200dp"
+        android:background="@drawable/ic_add_tanda"/>
+
     <TextView
         android:id="@+id/fragment_calendario_jornada_number"
         android:layout_width="match_parent"
@@ -25,6 +37,7 @@
         />
 
     <View
+        android:id="@+id/item_jornada_linea_divisora"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         app:layout_constraintLeft_toLeftOf="parent"
