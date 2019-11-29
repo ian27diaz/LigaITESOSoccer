@@ -162,7 +162,8 @@ class IngresarJugadores : AppCompatActivity(), View.OnClickListener {
                         jugadorParse.put("esEgresado", jugador.esEgresado)
                         jugadorParse.put("Email", jugador.email)
                         jugadorParse.put("esSeleccionado", jugador.esSeleccionado)
-
+                        jugadorParse.put("Amarillas", 0)
+                        jugadorParse.put("Rojas", 0)
                         jugadorParse.saveInBackground()
 
                     }
