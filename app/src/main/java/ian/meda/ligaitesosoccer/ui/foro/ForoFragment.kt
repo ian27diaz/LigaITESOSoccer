@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -64,6 +66,15 @@ class ForoFragment : Fragment() {
             newMessage.put("Fecha", currDate)
             val test = newMessage.saveInBackground().isCompleted
             Log.v("ForoFragment", "$test completed")
+
+            val builder = NotificationCompat.Builder(context!!, "AndroidCourse")
+                .setSmallIcon(R.drawable.gol)
+                .setContentTitle("Mensaje")
+                .setContentText("Tu mensaje ha sido enviado con exito")
+                .setStyle(NotificationCompat.BigTextStyle())
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+            NotificationManagerCompat.from(context!!).notify(11, builder.build())
         }
 
         return root
