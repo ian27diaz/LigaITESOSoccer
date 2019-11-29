@@ -58,7 +58,8 @@ class CalendarioFragment : Fragment() {
                                 enfrentamiento.getNumber("golesEquipo1")!!.toInt(),
                                 enfrentamiento.getNumber("golesEquipo2")!!.toInt(),
                                 enfrentamiento.objectId,
-                                enfrentamiento.getDate("fechaHora")!!
+                                enfrentamiento.getDate("fechaHora")!!,
+                                enfrentamiento.getBoolean("editado")
                                 )
                             Log.v("CalendarioFragmentTag", "CurrJornada: ${currJornada}")
                             while(currJornada >= jornadaArray.size) {

@@ -164,7 +164,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
             match1team1.text = jornada[0].equipo1
             var date = jornada[0].fecha
             Log.v("AdaperCalendario", date.toString())
-            if (date.after(hoy)) {
+            if (!jornada[0].editado) {
                 match1result.text = "${date.date}/${date.month + 1}/${date.year + 1900}"
             } else {
                 match1result.setText(jornada.get(0).golesEquipo1.toString() + " - " + jornada.get(0).golesEquipo2.toString())
@@ -178,7 +178,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match2team1.setText(jornada.get(1).equipo1)
             date = jornada.get(1).fecha
-            if (date.after(hoy)) {
+            if (!jornada[1].editado) {
                 match2result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match2result.setText(jornada.get(1).golesEquipo1.toString() + " - " + jornada.get(1).golesEquipo2.toString())
@@ -192,7 +192,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match3team1.setText(jornada.get(2).equipo1)
             date = jornada.get(2).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[2].editado) {
                 match3result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match3result.setText(jornada.get(2).golesEquipo1.toString() + " - " + jornada.get(2).golesEquipo2.toString())
@@ -205,7 +205,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match4team1.setText(jornada.get(3).equipo1)
             date = jornada.get(3).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[3].editado) {
                 match4result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match4result.setText(jornada.get(3).golesEquipo1.toString() + " - " + jornada.get(3).golesEquipo2.toString())
@@ -218,7 +218,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match5team1.setText(jornada.get(4).equipo1)
             date = jornada.get(4).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[4].editado) {
                 match5result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match5result.setText(jornada.get(4).golesEquipo1.toString() + " - " + jornada.get(4).golesEquipo2.toString())
@@ -231,7 +231,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match6team1.setText(jornada.get(5).equipo1)
             date = jornada.get(5).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[5].editado) {
                 match6result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match6result.setText(jornada.get(5).golesEquipo1.toString() + " - " + jornada.get(5).golesEquipo2.toString())
@@ -244,7 +244,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match7team1.setText(jornada.get(6).equipo1)
             date = jornada.get(6).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[6].editado) {
                 match7result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match7result.setText(jornada.get(6).golesEquipo1.toString() + " - " + jornada.get(6).golesEquipo2.toString())
@@ -257,7 +257,7 @@ class JornadaViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
             match8team1.setText(jornada.get(7).equipo1)
             date = jornada.get(7).fecha;
-            if (date.after(hoy)) {
+            if (!jornada[7].editado) {
                 match8result.setText("${date.date}/${(date.month + 1)}/${date.year + 1900}")
             } else {
                 match8result.setText(jornada.get(7).golesEquipo1.toString() + " - " + jornada.get(7).golesEquipo2.toString())

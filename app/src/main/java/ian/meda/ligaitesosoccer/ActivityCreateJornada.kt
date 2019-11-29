@@ -123,6 +123,7 @@ class ActivityCreateJornada : AppCompatActivity(), View.OnClickListener {
 
         doAsync {
             val equiposQuery = ParseQuery.getQuery<ParseObject>("Equipo")
+            equiposQuery.whereEqualTo("esEquipoValido", true)
             val spinnerItems = arrayListOf<String>()
             equiposQuery.findInBackground(object: FindCallback<ParseObject> {
                 override fun done(equipos: MutableList<ParseObject>?, e: ParseException?) {
