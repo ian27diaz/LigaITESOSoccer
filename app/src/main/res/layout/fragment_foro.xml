@@ -9,10 +9,11 @@
         android:id="@+id/fragment_foro_recyclerview"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_foro_message_input"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
 
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_foro_message_input"

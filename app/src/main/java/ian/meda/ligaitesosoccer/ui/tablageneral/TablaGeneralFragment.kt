@@ -33,6 +33,7 @@ class TablaGeneralFragment : Fragment() {
             val queryEquipos = ParseQuery.getQuery<ParseObject>("Equipo")
             queryEquipos.whereEqualTo("esEquipoValido", true)
             queryEquipos.orderByDescending("puntosTotales")
+            queryEquipos.addDescendingOrder("diferenciaGoles")
             queryEquipos.findInBackground ( object: FindCallback<ParseObject> {
                 var equipos: List<ParseObject> = arrayListOf()
                 override fun done(equiposList: List<ParseObject>, e : ParseException?) {

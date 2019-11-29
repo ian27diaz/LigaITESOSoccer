@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:text="equipo"
+        android:background="@color/colorAccent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
