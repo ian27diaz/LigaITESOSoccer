@@ -147,6 +147,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_guideline_30_h"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/partido_guideline_50_v"
+        android:visibility="gone"
         />
     <Spinner
         android:id="@+id/partido_ingresar_evento_jugador_local"
@@ -155,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_ingresar_evento_tipo_local"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/partido_guideline_50_v"
-
+        android:visibility="gone"
         />
     <Button
         android:id="@+id/partido_ingresar_evento_aceptar_local"
@@ -165,6 +166,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_ingresar_evento_jugador_local"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/partido_guideline_50_v"
+        android:visibility="gone"
         />
 
     <Spinner
@@ -174,6 +176,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_guideline_30_h"
         app:layout_constraintStart_toStartOf="@id/partido_guideline_50_v"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         />
     <Spinner
         android:id="@+id/partido_ingresar_evento_jugador_visita"
@@ -182,6 +185,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_ingresar_evento_tipo_visita"
         app:layout_constraintStart_toStartOf="@id/partido_guideline_50_v"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         />
     <Button
         android:id="@+id/partido_ingresar_evento_aceptar_visita"
@@ -191,6 +195,7 @@
         app:layout_constraintTop_toBottomOf="@id/partido_ingresar_evento_jugador_visita"
         app:layout_constraintStart_toStartOf="@id/partido_guideline_50_v"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         />
 
 
