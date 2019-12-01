@@ -42,11 +42,6 @@ class Login () :  AppCompatActivity(), View.OnClickListener {
             R.id.login_darDeAlta -> {
                 val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
                 val isInPlayerRegistration = sharedPreferences.getBoolean(SESSION_IS_IN_PLAYER_REGISTRATION, false)
-                /* if(!isInPlayerRegistration)
-                    startActivity<CrearEquipo>()
-                else
-                    startActivity<IngresarJugadores>()
-                */
                 startActivity<CrearEquipo>()
 
             }

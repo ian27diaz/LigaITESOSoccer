@@ -22,12 +22,12 @@
     <string name="activity_ing_jug_siguiente">siguiente</string>
     <string name="activity_partido_0">0</string>
     <string name="activity_partido_vs">VS</string>
-    <string name="crear_equipo_nombreequipo">Nombre del equipo</string>
-    <string name="crear_equipo_escudoequipo">Escudo del equipo</string>
-    <string name="crear_equipo_nombre_capitan">Nombre del capitan</string>
+    <string name="crear_equipo_nombreequipo">Nombre del equipo:</string>
+    <string name="crear_equipo_escudoequipo">Escudo del equipo:</string>
+    <string name="crear_equipo_nombre_capitan">Nombre del capitan:</string>
     <string name="crear_equipo_telefono">Telefono</string>
-    <string name="crear_equipo_correoelectronico">Correo Electronico</string>
-    <string name="crear_equipo_comprobantepago">Comprobante de pago</string>
+    <string name="crear_equipo_correoelectronico">Correo Electronico:</string>
+    <string name="crear_equipo_comprobantepago">Comprobante de pago:</string>
     <string name="crear_equipo_continuar">Continuar</string>
     <string name="fragment_codigo_description">¡Ingresa el código de tu equipo!</string>
     <string name="fragment_codigo_ingresar">Ingresar</string>
@@ -52,7 +52,7 @@
     <string name="item_equipo_tabla_1">1</string>
     <string name="item_goleador_default">Default</string>
     <string name="item_evento_jugador_def">Luis Fernando Gutierrez Preciado</string>
-    <string name="item_ingresa_jugador_nombre">ingresa el nombre</string>
+    <string name="item_ingresa_jugador_nombre">Ingresa el nombre</string>
     <string name="item_ingresa_jugador_expediente">Expediente:</string>
     <string name="item_jugador_expediente_default">670965 ISC</string>
     <string name="item_jugador_goles_default">Goles: 27</string>

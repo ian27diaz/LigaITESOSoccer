@@ -58,7 +58,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
-        android:text="Nombre"
+        android:text="Nombre:"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_foto"
         />
 
@@ -79,6 +80,7 @@
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
         android:text="@string/item_ingresa_jugador_expediente"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_nombre"
         />
     <androidx.appcompat.widget.AppCompatTextView
@@ -95,6 +97,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Correo:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/ingresa_jugador_porras_guideline_10_v"
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_90_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_expediente"
@@ -116,6 +119,7 @@
         app:layout_constraintEnd_toEndOf="@id/ingresa_jugador_porras_guideline_70_v"
         app:layout_constraintTop_toBottomOf="@id/ingresa_jugador_porras_correo"
         android:text="Carrera:"
+        android:textStyle="bold"
         />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ingresa_jugador_porras_carrera"

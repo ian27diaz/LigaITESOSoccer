@@ -16,6 +16,8 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/design_default_color_primary_dark"
         />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ingresar_jugadores_porras_btn_aceptar"
@@ -25,6 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_gravity="top|start"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/design_default_color_primary_dark"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_ingresar_jugadores_porras"

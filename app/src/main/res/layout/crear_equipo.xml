@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/crear_equipo_nombreequipo"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -34,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_escudoequipo"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_nombre_equipo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -55,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_nombre_capitan"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_image_upload_escudo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -71,7 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Expediente"
+            android:text="Expediente:"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_nombre_capitan"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -90,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_correoelectronico"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_expediente_crearequipo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -101,12 +107,14 @@
             android:inputType="textEmailAddress"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_tv_correo"
             />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_crearequipo_comprobante_pago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/crear_equipo_comprobantepago"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/crear_equipo_et_correo"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -130,7 +138,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/crear_equipo_continuar"
-            android:background = "@android:color/holo_blue_bright"
+            android:background = "@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@id/image_upload_comprobante"
             android:textColor="@android:color/white"
             android:gravity="center"

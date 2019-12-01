@@ -167,6 +167,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/partido_guideline_50_v"
         android:visibility="gone"
+
         />
 
     <Spinner
